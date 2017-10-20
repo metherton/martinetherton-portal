@@ -25,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="portal-home.html">
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
-<link rel="lazy-import" href="my-view404.html">
+<link rel="lazy-import" href="portal-view404.html">
 
 <dom-module id="portal-container">
   <template>
@@ -109,7 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <portal-home name="home"></portal-home>
           <my-view2 name="view2"></my-view2>
           <my-view3 name="view3"></my-view3>
-          <my-view404 name="view404"></my-view404>
+          <portal-view404 name="view404"></portal-view404>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -143,7 +143,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _routePageChanged(page) {
         // If no page was found in the route data, page will be an empty string.
         // Default to 'view1' in that case.
-        this.page = page || 'ons';
+        this.page = page || 'home';
 
         // Close a non-persistent drawer when the page & route are changed.
         if (!this.$.drawer.persistent) {
