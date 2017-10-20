@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="lazy-import" href="portal-home.html">
 <link rel="lazy-import" href="portal-ons.html">
-<link rel="lazy-import" href="my-view3.html">
+<link rel="lazy-import" href="portal-about.html">
 <link rel="lazy-import" href="portal-view404.html">
 
 <dom-module id="portal-container">
@@ -87,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="home" href="[[rootPath]]home">Home</a>
           <a name="ons" href="[[rootPath]]ons">ONS</a>
-          <a name="view3" href="[[rootPath]]view3">View Three</a>
+          <a name="about" href="[[rootPath]]about">About</a>
         </iron-selector>
       </app-drawer>
 
@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             role="main">
           <portal-home name="home"></portal-home>
           <portal-ons name="ons"></portal-ons>
-          <my-view3 name="view3"></my-view3>
+          <portal-about name="about"></portal-about>
           <portal-view404 name="view404"></portal-view404>
         </iron-pages>
       </app-header-layout>

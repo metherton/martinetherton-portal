@@ -20,21 +20,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script src="../bower_components/web-component-tester/browser.js"></script>
 
     <!-- Import the element to test -->
-    <link rel="import" href="../src/portal-ons.html">
+    <link rel="import" href="../src/portal-about.html">
   </head>
   <body>
     <test-fixture id="BasicView">
       <template>
-        <portal-ons></portal-ons>
+        <portal-about></portal-about>
       </template>
     </test-fixture>
 
     <script>
-      suite('ONS tests', function() {
-        test('Number in circle should be 2', function() {
-          var onsView = fixture('BasicView');
-          var circle = onsView.shadowRoot.querySelector('.circle');
-          assert.equal(circle.textContent, '2');
+      suite('About tests', function() {
+        test('Number in circle should be 3', function() {
+          var aboutView = fixture('BasicView');
+          var circle = aboutView.shadowRoot.querySelector('.circle');
+          assert.equal(circle.textContent, '3');
         });
       });
     </script>
