@@ -8,6 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
@@ -20,6 +21,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="../bower_components/paper-search/paper-search-panel.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="portal-home.html">
@@ -37,6 +41,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
+      app-toolbar {
+        /* Toolbar is the main header, so give it some color */
+        background-color: #000000;
+        font-family: Arial, Helvetica, freesans, sans-serif;
+        color: white;
+        /*--app-toolbar-font-size: 24px;*/
+      }
+      paper-tabs {
+        --paper-tabs-selection-bar-color: white;
+      }
+      paper-tab {
+        color: white;
+        --paper-tab-ink: white;
+      }
+      paper-search-bar {
+        color: #000000;
+      }
       app-drawer-layout:not([narrow]) [drawer-toggle] {
         display: none;
       }
@@ -66,6 +87,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+
+      .tab-links a {
+        text-decoration: none;
+        /*font-weight: 500;*/
+        height: auto !important;
+        font-size: 14px;
+        color: white;
+      }
+
+      .tab-links a:active, a:focus {
+        outline: 0;
+        border: none;
+        -moz-outline-style: none
+      }
+
     </style>
 
     <app-location
@@ -80,39 +116,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}">
     </app-route>
 
-    <app-drawer-layout fullbleed narrow="{{narrow}}">
-      <!-- Drawer content -->
-      <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home" href="[[rootPath]]home">Home</a>
-          <a name="ons" href="[[rootPath]]ons">ONS</a>
-          <a name="about" href="[[rootPath]]about">About</a>
-        </iron-selector>
-      </app-drawer>
+    <!-- Main content -->
 
-      <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+    <app-header>
+      <app-toolbar>
+        <span main-title>MartinEtherton Portal</span>
 
-        <app-header slot="header" condenses reveals effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>MartinEtherton Portal</div>
-          </app-toolbar>
-        </app-header>
+        <!--<iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">-->
+          <!--<a name="home" href="[[rootPath]]home">Home</a>-->
+          <!--<a name="ons" href="[[rootPath]]ons">ONS</a>-->
+          <!--<a name="about" href="[[rootPath]]about">About</a>-->
+        <!--</iron-selector>-->
 
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
-          <portal-home name="home"></portal-home>
-          <portal-ons name="ons"></portal-ons>
-          <portal-about name="about"></portal-about>
-          <portal-view404 name="view404"></portal-view404>
-        </iron-pages>
-      </app-header-layout>
-    </app-drawer-layout>
+
+        <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
+          <paper-tab name="home"><a href="[[rootPath]]home">Home</a></paper-tab>
+          <paper-tab name="ons"><a href="[[rootPath]]ons">ONS</a></paper-tab>
+          <paper-tab name="about"><a href="[[rootPath]]about">About</a></paper-tab>
+        </paper-tabs>
+        <div main-title>&nbsp;</div>
+        <paper-search-bar hide-filter-button="true"></paper-search-bar>
+      </app-toolbar>
+    </app-header>
+
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="name"
+        fallback-selection="view404"
+        role="main">
+      <portal-home name="home"></portal-home>
+      <portal-ons name="ons"></portal-ons>
+      <portal-about name="about"></portal-about>
+      <portal-view404 name="view404"></portal-view404>
+    </iron-pages>
+
   </template>
 
   <script>
