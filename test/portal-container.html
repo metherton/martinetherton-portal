@@ -14,22 +14,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>Tests</title>
+    <title>my-view1</title>
 
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
     <script src="../bower_components/web-component-tester/browser.js"></script>
+
+    <!-- Import the element to test -->
+    <link rel="import" href="../src/portal-container.html">
   </head>
   <body>
+    <test-fixture id="BasicContainer">
+      <template>
+        <portal-container></portal-container>
+      </template>
+    </test-fixture>
+
     <script>
-      WCT.loadSuites([
-        // Load 'my-view1.html' test suite, using native shadow dom
-        'my-view1.html?dom=shadow',
-        // Load 'my-view1.html' test suite, using shadydom
-        'my-view1.html?wc-shadydom=true',
-        // Load 'my-view1.html' test suite, using native shadow dom
-        'portal-container.html?dom=shadow',
-        // Load 'my-view1.html' test suite, using shadydom
-        'portal-container.html?wc-shadydom=true',
-      ]);
+      suite('portal-container tests', function() {
+        test('Title should be MartinEtherton Portal', function() {
+          var myContainer = fixture('BasicContainer');
+          var mainTitle = myContainer.shadowRoot.querySelector('div[main-title]');
+          assert.equal(mainTitle.innerHTML, 'MartinEtherton Portal');
+        });
+      });
     </script>
   </body>
 </html>
