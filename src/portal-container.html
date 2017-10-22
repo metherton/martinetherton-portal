@@ -46,6 +46,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
       }
 
+      /*:host(input) /deep/ {*/
+        /*padding-top: 0px;*/
+        /*padding-bottom: 0px;*/
+        /*color: red;*/
+      /*}*/
+
+      paper-search-bar {
+        --paper-search-bar-height: 24px;
+      }
+
+      paper-search-bar > iron-input ::slotted(*) {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
+      /*iron-input ::slotted('#content') {*/
+        /*padding-top: 0px;*/
+        /*padding-bottom: 0px;*/
+      /*}*/
+
+      /*::slotted input /deep/ {*/
+        /*padding-top: 0px;*/
+        /*padding-bottom: 0px;*/
+      /*}*/
+
+      /*paper-search-bar(iron-input) ::slotted(input) {*/
+        /*padding-top: 0px;*/
+        /*padding-bottom: 0px;*/
+      /*}*/
+
+
+      /*#input /deep/ {*/
+        /*padding: 0;*/
+      /*}*/
+
       app-toolbar {
         /* Toolbar is the main header, so give it some color */
         background-color: #000000;
@@ -74,6 +109,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
+      }
+
+      app-toolbar {
+        height: 40px;
       }
 
       .drawer-list {
@@ -107,7 +146,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -moz-outline-style: none
       }
 
+      ::slotted(*) {
+        color: red;
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+
     </style>
+
+
+
+    <!--<slot name="bla"></slot>-->
+
 
     <app-location
         route="{{route}}"
@@ -126,11 +176,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-header>
       <app-toolbar>
         <span main-title>MartinEtherton Portal</span>
-
+        <!--<slot name="bla"></slot>-->
         <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
           <paper-tab name="home"><a href="[[rootPath]]home">Home</a></paper-tab>
           <paper-tab name="ons"><a href="[[rootPath]]ons">ONS</a></paper-tab>
           <paper-tab name="about"><a href="[[rootPath]]about">About</a></paper-tab>
+          <paper-tab name="about"><a href="[[rootPath]]about"><slot name="bla"></slot></a></paper-tab>
         </paper-tabs>
         <div main-title>&nbsp;</div>
         <paper-search-bar hide-filter-button="true"></paper-search-bar>
