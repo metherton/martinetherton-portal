@@ -54,11 +54,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-search-bar {
         --paper-search-bar-height: 24px;
-      }
-
-      paper-search-bar > iron-input ::slotted(*) {
-        padding-top: 0px;
-        padding-bottom: 0px;
+        --input-styles: {
+          padding-top: 0px;
+          padding-bottom: 0px;
+        }
       }
 
       /*iron-input ::slotted('#content') {*/
@@ -146,11 +145,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -moz-outline-style: none
       }
 
-      ::slotted(*) {
-        color: red;
-        padding-top: 0px;
-        padding-bottom: 0px;
-      }
+      /*::slotted(*) {*/
+        /*color: red;*/
+        /*padding-top: 0px !important;*/
+        /*padding-bottom: 0px !important;*/
+      /*}*/
 
     </style>
 
@@ -181,7 +180,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <paper-tab name="home"><a href="[[rootPath]]home">Home</a></paper-tab>
           <paper-tab name="ons"><a href="[[rootPath]]ons">ONS</a></paper-tab>
           <paper-tab name="about"><a href="[[rootPath]]about">About</a></paper-tab>
-          <paper-tab name="about"><a href="[[rootPath]]about"><slot name="bla"></slot></a></paper-tab>
+          <!--<paper-tab name="about"><a href="[[rootPath]]about"><slot name="bla"></slot></a></paper-tab>-->
         </paper-tabs>
         <div main-title>&nbsp;</div>
         <paper-search-bar hide-filter-button="true"></paper-search-bar>
