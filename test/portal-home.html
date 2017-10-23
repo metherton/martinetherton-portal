@@ -35,24 +35,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var element;
 
         setup(function() {
-          element = fixture('BasicTestFixture');
+          element = fixture('BasicView');
         });
 
-//        test('paper-card should exist', function() {
-//          var card = element.shadowRoot.querySelector('paper-card');
-//          assert.equal(card.heading, 'Etherton One Name Study');
-//        });
+        test('paper-card should exist', function() {
+          var card = element.shadowRoot.querySelector('paper-card');
+          assert.equal(card.heading, 'Etherton One Name Study');
+        });
 
-//        test('handle tap event', function(done) {
-//          element.addEventListener('gotoPage', function(event) {
-//            expect(event.page).to.be.equal('ons');
-//            done();
-//          });
-//
-//          flush(function() {
-//            element.gotoPage({target: {page: 'ons'}});
-//          });
-//        });
+        test('handle tap event', function(done) {
+          element.addEventListener('gotoPage', function(event) {
+            expect(event.page).to.be.equal('ons');
+            done();
+          });
+
+          flush(function() {
+            element.gotoOns({target: {page: 'ons'}});
+          });
+        });
 
 
       });
