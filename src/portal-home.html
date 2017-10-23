@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="portal-home">
@@ -26,17 +27,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <p class="home-title">Welcome to MartinEtherton.com</p>
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>Home</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+
+    <paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
+
   </template>
 
   <script>
     class PortalHome extends Polymer.Element {
       static get is() { return 'portal-home'; }
+
+      gotoOns() {
+        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        event.page = 'ons';
+        this.dispatchEvent(event);
+      }
     }
 
     window.customElements.define(PortalHome.is, PortalHome);

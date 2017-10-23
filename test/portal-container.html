@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('portal-container tests', function() {
         test('Title should be MartinEtherton Portal', function() {
           var myContainer = fixture('BasicContainer');
-          var mainTitle = myContainer.shadowRoot.querySelector('div[main-title]');
+          var mainTitle = myContainer.shadowRoot.querySelector('span');
           assert.equal(mainTitle.innerHTML, 'MartinEtherton Portal');
         });
       });

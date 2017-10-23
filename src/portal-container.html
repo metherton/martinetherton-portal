@@ -212,20 +212,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           page: {
             type: String,
             reflectToAttribute: true,
-            observer: '_pageChanged',
+            observer: '_pageChanged'
           },
           routeData: Object,
           subroute: String,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
-          rootPath: String,
+          rootPath: String
         };
       }
 
       static get observers() {
         return [
-          '_routePageChanged(routeData.page)',
+          '_routePageChanged(routeData.page)'
         ];
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('gotoPage', e => this._gotoPage(e));
+      }
+
+      _gotoPage(event) {
+        this.page = event.page;
       }
 
       _routePageChanged(page) {
