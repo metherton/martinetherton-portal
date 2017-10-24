@@ -234,7 +234,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       _gotoPage(event) {
-        this.page = event.page;
+        this.set('route.path', event.page);
       }
 
       _routePageChanged(page) {

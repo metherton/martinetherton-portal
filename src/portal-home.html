@@ -28,6 +28,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-card {
         margin-left: 24px;
       }
+
+      paper-card:hover {
+        cursor: pointer;
+      }
+
     </style>
 
     <p class="home-title">Welcome to MartinEtherton.com</p>
@@ -42,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       gotoOns() {
         let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
-        event.page = 'ons';
+        event.page = '/ons';
         this.dispatchEvent(event);
       }
     }
