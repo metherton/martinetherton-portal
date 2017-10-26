@@ -17,8 +17,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
-        padding: 10px;
       }
       p.ons-title {
         margin-left: 24px;
@@ -33,20 +31,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cursor: pointer;
       }
 
+      app-toolbar {
+        background-color: #bb1919;
+      }
+
+      div {
+        color: white;
+      }
+
+
     </style>
 
-    <p class="ons-title">Etherton One Name Study</p>
+    <app-toolbar>
+      <div main-title>Etherton One Name Study</div>
+    </app-toolbar>
+
+    <p class="ons-title"></p>
 
     <paper-card heading="London(1) Ethertons" image="../images/london1.jpeg">
 
     </paper-card>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>ONS</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
   </template>
 
   <script>
