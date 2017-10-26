@@ -33,8 +33,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       suite('ONS tests', function() {
         test('Number in circle should be 2', function() {
           var onsView = fixture('BasicView');
-          var circle = onsView.shadowRoot.querySelector('.circle');
-          assert.equal(circle.textContent, '2');
+          var title = onsView.shadowRoot.querySelector('p.ons-title');
+          assert.equal(title.textContent, 'Etherton One Name Study');
         });
       });
     </script>
