@@ -31,10 +31,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
       suite('ONS tests', function() {
-        test('Number in circle should be 2', function() {
+        test('Page heading should be correct', function() {
           var onsView = fixture('BasicView');
           var title = onsView.shadowRoot.querySelector('p.ons-title');
           assert.equal(title.textContent, 'Etherton One Name Study');
+        });
+
+        test('Page heading should be correct', function() {
+          var onsView = fixture('BasicView');
+          var card = onsView.shadowRoot.querySelector('paper-card');
+          assert.equal(card.heading, 'London(1) Ethertons');
         });
       });
     </script>
