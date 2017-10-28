@@ -41,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-tabs {
+        height: 30px;
         --paper-tabs-selection-bar-color: yellow;
         --paper-tabs-selection-bar: {
           border-width: 4px;
@@ -50,6 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-tab {
         color: white;
         --paper-tab-ink: white;
+        border-right: solid thin;
       }
 
       .tab-links a {
@@ -80,9 +82,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-toolbar>
     </app-header>
     <app-header>
-      <app-toolbar style="height:30px">
-        <span main-title>&nbsp;</span>
-        <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
+      <app-toolbar style="height:30px;">
+        <!--<span main-title>&nbsp;</span>-->
+        <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 300px;">
+          <paper-tab name="ons"><a href="[[rootPath]]ons">Home</a></paper-tab>
           <paper-tab name="records"><a href="[[rootPath]]data">Records</a></paper-tab>
           <paper-tab name="dna"><a href="[[rootPath]]dna">DNA</a></paper-tab>
           <paper-tab name="distribution"><a href="[[rootPath]]distribution">Distribution</a></paper-tab>
