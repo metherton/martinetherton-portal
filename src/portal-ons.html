@@ -66,15 +66,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -moz-outline-style: none
       }
 
+      span {
+        font-size: 36px;
+        font-weight: bold;
+      }
+
     </style>
 
-    <app-header>
-      <app-toolbar>
+    <app-header style="border-bottom: solid thin">
+      <app-toolbar style="height:80px">
         <span main-title>Etherton One Name Study</span>
       </app-toolbar>
     </app-header>
     <app-header>
-      <app-toolbar>
+      <app-toolbar style="height:30px">
         <span main-title>&nbsp;</span>
         <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
           <paper-tab name="records"><a href="[[rootPath]]data">Records</a></paper-tab>
