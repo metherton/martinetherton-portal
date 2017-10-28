@@ -10,6 +10,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="portal-ons">
@@ -34,21 +36,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       app-toolbar {
-        background-color: #bb1919;
+        height: 48px;
+        background-color: #ce1919;
       }
 
-      div {
+      paper-tabs {
+        --paper-tabs-selection-bar-color: yellow;
+        --paper-tabs-selection-bar: {
+          border-width: 4px;
+          background-color: #ed1919;
+        };
+      }
+      paper-tab {
+        color: white;
+        --paper-tab-ink: white;
+      }
+
+      .tab-links a {
+        text-decoration: none;
+        /*font-weight: 500;*/
+        height: auto !important;
+        font-size: 14px;
         color: white;
       }
 
+      .tab-links a:active, a:focus {
+        outline: 0;
+        border: none;
+        -moz-outline-style: none
+      }
 
     </style>
 
-    <app-toolbar>
-      <div main-title>Etherton One Name Study</div>
-    </app-toolbar>
-
-    <p class="ons-title"></p>
+    <app-header>
+      <app-toolbar>
+        <span main-title>Etherton One Name Study</span>
+      </app-toolbar>
+    </app-header>
+    <app-header>
+      <app-toolbar>
+        <span main-title>&nbsp;</span>
+        <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
+          <paper-tab name="records"><a href="[[rootPath]]data">Records</a></paper-tab>
+          <paper-tab name="dna"><a href="[[rootPath]]dna">DNA</a></paper-tab>
+          <paper-tab name="distribution"><a href="[[rootPath]]distribution">Distribution</a></paper-tab>
+        </paper-tabs>
+        <div main-title>&nbsp;</div>
+      </app-toolbar>
+    </app-header>
 
     <paper-card heading="London(1) Ethertons" image="../images/london2.jpeg"></paper-card>
     <paper-card heading="London(2) Ethertons" image="../images/london1.jpeg"></paper-card>
