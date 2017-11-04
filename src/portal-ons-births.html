@@ -10,9 +10,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="portal-ons-records">
+<dom-module id="portal-ons-births">
     <template>
         <style include="shared-styles">
             :host {
@@ -36,28 +37,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
-        <paper-card on-tap="gotoBirths" heading="Births"></paper-card>
-        <paper-card heading="Marriages"></paper-card>
-        <paper-card heading="Deaths"></paper-card>
-        <paper-card heading="Census"></paper-card>
+        <iron-ajax auto
+                    url="../resources/births.json"
+                    handle-as="json"
+                    last-response="{{ajaxResponse}}">
 
+        </iron-ajax>
+        <pre>[[json(ajaxResponse)]]</pre>
 
+        <template is="dom-repeat" items="[[ajaxResponse]]">
+            <span>[[item.name]]</span>
+        </template>
+        Births
 
     </template>
 
     <script>
-        class PortalOnsRecords extends Polymer.Element {
+        class PortalOnsBirths extends Polymer.Element {
             static get is() {
-                return 'portal-ons-records';
+                return 'portal-ons-births';
             }
-            gotoBirths() {
-                let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
-                event.page = '/ons/births';
-                this.dispatchEvent(event);
+
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: "bar"
+                    }
+                }
+            }
+
+            json(obj) {
+                return JSON.stringify(obj, null, 2);
             }
 
         }
 
-        window.customElements.define(PortalOnsRecords.is, PortalOnsRecords);
+
+        window.customElements.define(PortalOnsBirths.is, PortalOnsBirths);
     </script>
 </dom-module>
