@@ -38,7 +38,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
 
         <iron-ajax auto
-                    url="../resources/births.json"
+                    url="http://www.martinetherton.com:5001/users"
                     handle-as="json"
                     last-response="{{ajaxResponse}}">
 
@@ -46,7 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <pre>[[json(ajaxResponse)]]</pre>
 
         <template is="dom-repeat" items="[[ajaxResponse]]">
-            <span>[[item.name]]</span>
+            <span>[[item.username]]</span>
         </template>
         Births
 
