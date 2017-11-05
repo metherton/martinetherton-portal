@@ -8,6 +8,7 @@
     "src/portal-ons-births.html",
     "src/portal-ons-home.html",
     "src/portal-ons-records.html",
+    "src/portal-ons-records-home.html",
     "src/portal-view404.html"
   ],
   "sources": [
