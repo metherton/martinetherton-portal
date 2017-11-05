@@ -90,9 +90,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header>
             <app-toolbar style="height:30px;">
                 <!--<span main-title>&nbsp;</span>-->
-                <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 300px;">
-                   <paper-tab name="home"><a href="[[rootPath]]ons/records/home">Home</a></paper-tab>
+                <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 400px;">
+                   <paper-tab name="about"><a href="[[rootPath]]ons/records/about">About</a></paper-tab>
                    <paper-tab name="births"><a href="[[rootPath]]ons/records/births">Births</a></paper-tab>
+                    <paper-tab name="marriages"><a href="[[rootPath]]ons/records/marriages">Marriages</a></paper-tab>
+                    <paper-tab name="deaths"><a href="[[rootPath]]ons/records/deaths">Deaths</a></paper-tab>
+                    <paper-tab name="census"><a href="[[rootPath]]ons/records/census">Census</a></paper-tab>
                 </paper-tabs>
                 <div main-title>&nbsp;</div>
             </app-toolbar>
@@ -103,8 +106,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 attr-for-selected="name"
                 fallback-selection="view404"
                 role="main">
-            <portal-ons-records-home name="home"></portal-ons-records-home>
+            <portal-ons-records-about name="about"></portal-ons-records-about>
             <portal-ons-records-births name="births"></portal-ons-records-births>
+            <portal-ons-records-marriages name="births"></portal-ons-records-marriages>
+            <portal-ons-records-deaths name="births"></portal-ons-records-deaths>
+            <portal-ons-records-census name="births"></portal-ons-records-census>
             <portal-view404 name="view404"></portal-view404>
         </iron-pages>
 
@@ -154,7 +160,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             _routePageChanged(page) {
                 // If no page was found in the route data, page will be an empty string.
                 // Default to 'view1' in that case.
-                this.page = page || 'home';
+                this.page = page || 'about';
 
                 // Close a non-persistent drawer when the page & route are changed.
 //        if (!this.$.drawer.persistent) {
