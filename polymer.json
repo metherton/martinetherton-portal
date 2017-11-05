@@ -2,14 +2,19 @@
   "entrypoint": "index.html",
   "shell": "src/portal-container.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-view404.html"
+    "src/portal-about.html",
+    "src/portal-home.html",
+    "src/portal-ons.html",
+    "src/portal-ons-births.html",
+    "src/portal-ons-home.html",
+    "src/portal-ons-records.html",
+    "src/portal-view404.html"
   ],
   "sources": [
     "src/**/*",
-    "images/**/*"
+    "images/**/*",
+    "resources/**/*"
+
   ],
   "extraDependencies": [
     "manifest.json",
