@@ -43,24 +43,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-tabs {
         height: 30px;
-        --paper-tabs-selection-bar-color: yellow;
+        --paper-tabs-selection-bar-color: black;
         --paper-tabs-selection-bar: {
           border-width: 4px;
           background-color: #ed1919;
         };
       }
       paper-tab {
-        color: white;
+        color: black;
         --paper-tab-ink: white;
         border-right: solid thin;
       }
 
+      paper-tab.iron-selected {
+        color: white;
+        background-color: black;
+      }
       .tab-links a {
         text-decoration: none;
         /*font-weight: 500;*/
         height: auto !important;
         font-size: 14px;
-        color: white;
+        /*color: black;*/
+        color: inherit;
       }
 
       .tab-links a:active, a:focus {
@@ -69,10 +74,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -moz-outline-style: none
       }
 
-      span {
+      span.title {
         font-size: 36px;
         font-weight: bold;
-        color: white;
+        color: black;
       }
 
     </style>
@@ -91,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-header style="border-bottom: solid thin silver">
       <app-toolbar style="height:80px">
-        <span main-title>Etherton One Name Study</span>
+        <span class="title" main-title>Etherton One Name Study</span>
       </app-toolbar>
     </app-header>
     <app-header>
