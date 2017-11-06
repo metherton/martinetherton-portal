@@ -5,10 +5,10 @@
     "src/portal-about.html",
     "src/portal-home.html",
     "src/portal-ons.html",
-    "src/portal-ons-births.html",
+    "src/portal-ons-records-births.html",
     "src/portal-ons-home.html",
     "src/portal-ons-records.html",
-    "src/portal-ons-records-home.html",
+    "src/portal-ons-records-about.html",
     "src/portal-view404.html"
   ],
   "sources": [

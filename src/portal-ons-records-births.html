@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="portal-ons-births">
+<dom-module id="portal-ons-records-births">
     <template>
         <style include="shared-styles">
             :host {
@@ -53,9 +53,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
 
     <script>
-        class PortalOnsBirths extends Polymer.Element {
+        class PortalOnsRecordsBirths extends Polymer.Element {
             static get is() {
-                return 'portal-ons-births';
+                return 'portal-ons-records-births';
             }
 
             static get properties() {
@@ -74,6 +74,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
 
-        window.customElements.define(PortalOnsBirths.is, PortalOnsBirths);
+        window.customElements.define(PortalOnsRecordsBirths.is, PortalOnsRecordsBirths);
     </script>
 </dom-module>
