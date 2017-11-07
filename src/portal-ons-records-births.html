@@ -11,31 +11,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="portal-ons-records-births">
     <template>
-        <style include="shared-styles">
+        <style include="app-grid-style">
+
             :host {
-                display: block;
-
-                /*padding: 10px;*/
-            }
-            p.home-title {
-                margin-left: 24px;
-                font-size: 1.25rem;
+                --app-grid-columns: 3;
+                --app-grid-item-height: 100px;
             }
 
-            paper-card {
-                /*--paper-card-header-color: white;*/
-                margin-left: 5px;
+            ul {
+                padding: 0;
+                list-style: none;
             }
 
-            paper-card:hover {
-                cursor: pointer;
+            .item {
+                background-color: white;
+            }
+
+            @media (max-width: 640px) {
+                :host {
+                    --app-grid-columns: 1;
+                }
             }
 
         </style>
+        <ul class="app-grid">
+            <template is="dom-repeat" items="[[ajaxResponse]]">
+                <li class="item"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></li>
+            </template>
+        </ul>
 
         <iron-ajax auto
                     url="http://www.martinetherton.com:5001/users"
@@ -43,12 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     last-response="{{ajaxResponse}}">
 
         </iron-ajax>
-        <pre>[[json(ajaxResponse)]]</pre>
-
-        <template is="dom-repeat" items="[[ajaxResponse]]">
-            <span>[[item.username]]</span>
-        </template>
-        Births
+        <!--<pre>[[json(ajaxResponse)]]</pre>-->
 
     </template>
 
