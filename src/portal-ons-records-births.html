@@ -30,7 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             .item {
-                background-color: white;
+                /*background-color: white;*/
             }
 
             @media (max-width: 640px) {
@@ -38,56 +38,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     --app-grid-columns: 1;
                 }
             }
-            .wrapper {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                grid-gap: 10px;
-                grid-auto-rows: minmax(100px, auto);
+            paper-card.white {
+                --paper-card-header-color: #fff;
             }
-            .one {
-                grid-column: 1 / 3;
-                grid-row: 1;
-            }
-            .two {
-                grid-column: 2 / 4;
-                grid-row: 1 / 3;
-            }
-            .three {
-                grid-column: 1;
-                grid-row: 2 / 5;
-            }
-            .four {
-                grid-column: 3;
-                grid-row: 3;
-            }
-            .five {
-                grid-column: 2;
-                grid-row: 4;
-            }
-            .six {
-                grid-column: 3;
-                grid-row: 4;
-            }
-
 
         </style>
-        <!--<ul class="app-grid">-->
-            <!--<template is="dom-repeat" items="[[ajaxResponse]]">-->
-                <!--<li class="item"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></li>-->
-            <!--</template>-->
-        <!--</ul>-->
+        <ul class="app-grid">
+            <template is="dom-repeat" items="[[ajaxResponse]]">
+                <li class="item"><div class="horizontal"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></div></li>
+            </template>
+        </ul>
 
-        <app-box style="height: 100px;" effects="parallax-background">
-            <h2>Births</h2>
-            <div class="wrapper">
-                <div class="one">One</div>
-                <div class="two">Two</div>
-                <div class="three">Three</div>
-                <div class="four">Four</div>
-                <div class="five">Five</div>
-                <div class="six">Six</div>
-            </div>
-        </app-box>
+        <!--<paper-card heading="Pre-fab homes" image="./house.png" alt="House" class="white" style="margin-bottom:8px;">-->
+            <!--<div class="card-actions">-->
+                <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
+                <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
+                <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
+            <!--</div>-->
+        <!--</paper-card>-->
+        <!--<div class="horizontal">-->
+            <!--<paper-card heading="Favorite trips" image="./trip.png" alt="Trip" class="white" style="margin-right:4px;">-->
+                <!--<div class="card-actions horizontal justified">-->
+                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+            <!--<paper-card heading="Best airlines" image="./travel.png" alt="Travel" class="white" style="margin-left:4px;">-->
+                <!--<div class="card-actions horizontal justified">-->
+                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+        <!--</div>-->
+        <!--<div class="horizontal">-->
+            <!--<paper-card heading="Favorite trips" image="./trip.png" alt="Trip" class="white" style="margin-right:4px;">-->
+                <!--<div class="card-actions horizontal justified">-->
+                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+            <!--<paper-card heading="Best airlines" image="./travel.png" alt="Travel" class="white" style="margin-left:4px;">-->
+                <!--<div class="card-actions horizontal justified">-->
+                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
+                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+        <!--</div>-->
 
         <iron-ajax auto
                     url="http://www.martinetherton.com:5001/users"
