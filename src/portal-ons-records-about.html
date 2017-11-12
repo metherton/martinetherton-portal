@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="portal-ons-records">
+<dom-module id="portal-ons-records-about">
     <template>
         <style include="shared-styles">
             :host {
@@ -46,18 +46,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
 
     <script>
-        class PortalOnsRecords extends Polymer.Element {
+        class PortalOnsRecordsAbout extends Polymer.Element {
             static get is() {
-                return 'portal-ons-records';
+                return 'portal-ons-records-about';
             }
             gotoBirths() {
                 let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
-                event.page = '/ons/births';
+                event.page = '/ons/records/births';
                 this.dispatchEvent(event);
             }
 
         }
 
-        window.customElements.define(PortalOnsRecords.is, PortalOnsRecords);
+        window.customElements.define(PortalOnsRecordsAbout.is, PortalOnsRecordsAbout);
     </script>
 </dom-module>

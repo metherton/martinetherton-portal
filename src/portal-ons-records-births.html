@@ -10,6 +10,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -18,6 +24,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="portal-ons-records-births">
     <template>
         <style include="app-grid-style">
+
+            .closeBtn {
+                position: absolute;
+                top: -1em;
+                right: -2.7em;
+            }
 
             :host {
                 --app-grid-columns: 3;
@@ -43,56 +55,55 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
         </style>
+
+        <paper-dialog id="addPerson" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2>Add Person</h2>
+            <div>
+                <paper-input floatingLabel="true" label="First Name" value="{{editModel.firstName}}"></paper-input>
+                <paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>
+                <paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>
+                <paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>
+                <!--<paper-button dialog-confirm tabindex="0" raised colored on-click="saveProfile">Save</paper-button>-->
+                <!--<paper-button dialog-dismiss tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>-->
+            </div>
+            <div class="buttons">
+                <paper-button dialog-confirm tabindex="0" raised colored on-click="savePerson">Save</paper-button>
+                <paper-button dialog-dismiss tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>
+                <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
+                <!--<paper-button dialog-confirm autofocus>Accept</paper-button>-->
+            </div>
+        </paper-dialog>
+
+        <!--<div class$="{{panelToggle}}">-->
+            <!--<div class="edit-panel shadow-right">-->
+                <!--<paper-input floatingLabel="true" label="First Name" value="{{editModel.firstName}}"></paper-input>-->
+                <!--<paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>-->
+                <!--<paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>-->
+                <!--<paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>-->
+                <!--<paper-button tabindex="0" raised colored on-click="savePerson">Save</paper-button>-->
+                <!--<paper-button tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
+
         <ul class="app-grid">
             <template is="dom-repeat" items="[[ajaxResponse]]">
                 <li class="item"><div class="horizontal"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></div></li>
             </template>
         </ul>
 
-        <!--<paper-card heading="Pre-fab homes" image="./house.png" alt="House" class="white" style="margin-bottom:8px;">-->
-            <!--<div class="card-actions">-->
-                <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
-                <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
-                <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
-            <!--</div>-->
-        <!--</paper-card>-->
-        <!--<div class="horizontal">-->
-            <!--<paper-card heading="Favorite trips" image="./trip.png" alt="Trip" class="white" style="margin-right:4px;">-->
-                <!--<div class="card-actions horizontal justified">-->
-                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
-                <!--</div>-->
-            <!--</paper-card>-->
-            <!--<paper-card heading="Best airlines" image="./travel.png" alt="Travel" class="white" style="margin-left:4px;">-->
-                <!--<div class="card-actions horizontal justified">-->
-                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
-                <!--</div>-->
-            <!--</paper-card>-->
-        <!--</div>-->
-        <!--<div class="horizontal">-->
-            <!--<paper-card heading="Favorite trips" image="./trip.png" alt="Trip" class="white" style="margin-right:4px;">-->
-                <!--<div class="card-actions horizontal justified">-->
-                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
-                <!--</div>-->
-            <!--</paper-card>-->
-            <!--<paper-card heading="Best airlines" image="./travel.png" alt="Travel" class="white" style="margin-left:4px;">-->
-                <!--<div class="card-actions horizontal justified">-->
-                    <!--<paper-icon-button icon="favorite"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="bookmark"></paper-icon-button>-->
-                    <!--<paper-icon-button icon="social:share"></paper-icon-button>-->
-                <!--</div>-->
-            <!--</paper-card>-->
-        <!--</div>-->
+        <paper-toast id="toast"></paper-toast>
 
-        <iron-ajax auto
+        <iron-ajax auto id="getPersons"
                     url="http://www.martinetherton.com:5001/users"
                     handle-as="json"
-                    last-response="{{ajaxResponse}}">
+                    last-response="{{ajaxResponse}}" debounce-duration="300">
+
+        </iron-ajax>
+        <iron-ajax id="savePerson"
+                   url="http://www.martinetherton.com:5001/users"
+                   handle-as="json" method="POST" on-response="savePersonCallback" debounce-duration="300">
 
         </iron-ajax>
         <!--<pre>[[json(ajaxResponse)]]</pre>-->
@@ -110,7 +121,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     prop1: {
                         type: String,
                         value: "bar"
+                    },
+                    editModel: {
+                        type: Object,
+                        notify: true
+                    },
+                    panelToggle: {
+                        type: String,
+                        value: "",
+                        notify: true
                     }
+
                 }
             }
 
@@ -118,9 +139,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 return JSON.stringify(obj, null, 2);
             }
 
+            openPanel(e) {
+                var self = this;
+                this.$.addPerson.opened = true;
+                self.panelToggle = "toggled";
+                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:""}
+            }
+
+            closePanel() {
+                this.panelToggle = "";
+            }
+
+            savePerson() {
+                var self = this;
+                self.$.savePerson.body = JSON.stringify(self.editModel);
+                self.$.savePerson.contentType = "application/json";
+                self.$.savePerson.generateRequest();
+            }
+
+            savePersonCallback() {
+                var self = this;
+                self.$.toast.text = "Birth saved";
+                self.$.toast.show();
+                self.closePanel();
+                self.$.getPersons.generateRequest();
+            }
+
         }
 
-
         window.customElements.define(PortalOnsRecordsBirths.is, PortalOnsRecordsBirths);
+
     </script>
 </dom-module>
