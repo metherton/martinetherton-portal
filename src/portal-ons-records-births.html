@@ -67,6 +67,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 margin: 0;
             }
 
+            .gray {
+                background-color: #a8a8a8;
+            }
+
+            .lightgray {
+                background-color: #e5e5e5;
+            }
+
         </style>
 
         <paper-dialog id="addPerson" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
@@ -101,9 +109,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
 
         <ul class="app-grid">
-            <template is="dom-repeat" items="[[ajaxResponse]]">
+            <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index">
                 <!--<li class="item"><div class="horizontal"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></div></li>-->
-                <li class="item">[[item.firstName]] [[item.surname]]</li><li class="item">[[item.placeOfBirth]]</li><li class="item">[[item.dateOfBirth]]</li>
+                <li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>
             </template>
         </ul>
 
@@ -178,6 +186,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 self.closePanel();
                 self.$.getPersons.generateRequest();
             }
+
+            productClass(index) {
+                let color = index % 2 == 0 ? 'gray' : 'lightgray';
+                return 'item ' + color;
+            }
+
+
+
+
 
         }
 
