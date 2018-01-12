@@ -84,27 +84,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>
                 <paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>
                 <paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>
-                <!--<paper-button dialog-confirm tabindex="0" raised colored on-click="saveProfile">Save</paper-button>-->
-                <!--<paper-button dialog-dismiss tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>-->
             </div>
             <div class="buttons">
                 <paper-button dialog-confirm tabindex="0" raised colored on-click="savePerson">Save</paper-button>
                 <paper-button dialog-dismiss tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>
-                <!--<paper-button dialog-dismiss>Cancel</paper-button>-->
-                <!--<paper-button dialog-confirm autofocus>Accept</paper-button>-->
             </div>
         </paper-dialog>
-
-        <!--<div class$="{{panelToggle}}">-->
-            <!--<div class="edit-panel shadow-right">-->
-                <!--<paper-input floatingLabel="true" label="First Name" value="{{editModel.firstName}}"></paper-input>-->
-                <!--<paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>-->
-                <!--<paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>-->
-                <!--<paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>-->
-                <!--<paper-button tabindex="0" raised colored on-click="savePerson">Save</paper-button>-->
-                <!--<paper-button tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>-->
-            <!--</div>-->
-        <!--</div>-->
 
         <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
 
@@ -116,6 +101,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </ul>
 
         <paper-toast id="toast"></paper-toast>
+
+
+        <iron-ajax auto id="getWaypoints"
+                   url="http://www.martinetherton.com:8080/routeAdvices/114.5_22.0/-72.0_40.0"
+                   handle-as="json"
+                   last-response="{{ajaxResponse}}" debounce-duration="300">
+
+        </iron-ajax>
 
         <iron-ajax auto id="getPersons"
                     url="http://www.martinetherton.com:5001/users"

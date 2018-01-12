@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 onsRecords = fixture('BasicView');
                 api = onsRecords.$.getPersons;
             });
-            test('has sane defaults that love you', function() {
+            test('returns object with property success set to true', function() {
                 request = api.generateRequest();
                 server.respond();
                 expect(request.response).to.be.ok;
