@@ -1,0 +1,186 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tab.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="portal-router">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+
+      p.router-title {
+        margin-left: 24px;
+        font-size: 1.25rem;
+      }
+
+      paper-card {
+        /*--paper-card-header-color: white;*/
+        margin-left: 5px;
+      }
+
+
+      paper-card:hover {
+        cursor: pointer;
+      }
+
+      app-toolbar {
+        height: 48px;
+        background-color: #ffd230;
+      }
+
+      paper-tabs {
+        height: 30px;
+        --paper-tabs-selection-bar-color: black;
+        --paper-tabs-selection-bar: {
+          border-width: 4px;
+          background-color: #ed1919;
+        };
+      }
+      paper-tab {
+        color: black;
+        --paper-tab-ink: white;
+        border-right: solid thin;
+      }
+
+      div.rightLine {
+        border-right: solid thin;
+        width: 100%;
+        /*margin: 0px;*/
+        /*padding: 0px;*/
+      }
+
+      paper-tab.iron-selected {
+        color: white;
+        background-color: black;
+      }
+      .tab-links a {
+        text-decoration: none;
+        /*font-weight: 500;*/
+        height: auto !important;
+        font-size: 14px;
+        /*color: black;*/
+        color: inherit;
+      }
+
+      .tab-links a:active, a:focus {
+        outline: 0;
+        border: none;
+        -moz-outline-style: none
+      }
+
+      span.title {
+        font-size: 36px;
+        font-weight: bold;
+        color: black;
+      }
+
+    </style>
+
+    <app-location
+            route="{{route}}"
+            url-space-regex="^[[rootPath]]/router/">
+    </app-location>
+
+    <app-route
+            route="{{route}}"
+            pattern="[[rootPath]]router/:page"
+            data="{{routeData}}"
+            tail="{{subroute}}">
+    </app-route>
+
+    <app-header style="border-bottom: solid thin silver">
+      <app-toolbar style="height:80px">
+        <span class="title" main-title>Plan your route</span>
+      </app-toolbar>
+    </app-header>
+
+    <iron-pages
+            selected="[[page]]"
+            attr-for-selected="name"
+            fallback-selection="view404"
+            role="main">
+      <portal-router-home name="home"></portal-router-home>
+    </iron-pages>
+
+  </template>
+
+  <script>
+    class PortalRouter extends Polymer.Element {
+      static get is() {
+        return 'portal-router';
+      }
+
+      static get properties() {
+        return {
+          page: {
+            type: String,
+            reflectToAttribute: true,
+            observer: '_pageChanged'
+          },
+          routeData: Object,
+          subroute: String,
+          // This shouldn't be neccessary, but the Analyzer isn't picking up
+          // Polymer.Element#rootPath
+          rootPath: String
+        };
+      }
+
+      static get observers() {
+        return [
+          '_routePageChanged(routeData.page)'
+        ];
+      }
+
+      ready() {
+        super.ready();
+        this.addEventListener('gotoPage', e => this._gotoPage(e));
+      }
+
+      _gotoPage(event) {
+        this.set('route.path', event.page);
+      }
+
+      _routePageChanged(page) {
+        // If no page was found in the route data, page will be an empty string.
+        // Default to 'view1' in that case.
+        this.page = page || 'home';
+
+        // Close a non-persistent drawer when the page & route are changed.
+//        if (!this.$.drawer.persistent) {
+//          this.$.drawer.close();
+//        }
+      }
+
+      _pageChanged(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl('portal-router-' + page + '.html');
+        Polymer.importHref(
+                resolvedPageUrl,
+                null,
+                this._showPage404.bind(this),
+                true);
+      }
+
+      _showPage404() {
+        this.page = 'view404';
+      }
+
+
+    }
+
+    window.customElements.define(PortalRouter.is, PortalRouter);
+  </script>
+</dom-module>

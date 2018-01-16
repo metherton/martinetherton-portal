@@ -36,6 +36,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var mainTitle = myContainer.shadowRoot.querySelector('span');
           assert.equal(mainTitle.innerHTML, 'MeP');
         });
+
+        test('should be link to router application', function() {
+          var myContainer = fixture('BasicContainer');
+          var paperTabs = myContainer.shadowRoot.querySelectorAll('paper-tab a');
+          assert(paperTabs, 'paper tabs is neither null or undefined');
+          assert.equal(paperTabs.length, 4);
+          assert.equal(paperTabs[2].innerHTML, 'Router');
+
+        });
       });
     </script>
   </body>

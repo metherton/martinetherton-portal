@@ -31,6 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="lazy-import" href="portal-home.html">
 <link rel="lazy-import" href="portal-ons.html">
+<link rel="lazy-import" href="portal-router.html">
 <link rel="lazy-import" href="portal-about.html">
 <link rel="lazy-import" href="portal-view404.html">
 
@@ -187,6 +188,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 200px;">
           <paper-tab style="border-left: solid thin #666;" name="home"><a href="[[rootPath]]home">Home</a></paper-tab>
           <paper-tab name="ons"><a href="[[rootPath]]ons">ONS</a></paper-tab>
+          <paper-tab name="router"><a href="[[rootPath]]router">Router</a></paper-tab>
           <paper-tab name="about"><a href="[[rootPath]]about">About</a></paper-tab>
           <!--<paper-tab name="about"><a href="[[rootPath]]about"><slot name="bla"></slot></a></paper-tab>-->
         </paper-tabs>
@@ -203,6 +205,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         role="main">
       <portal-home name="home"></portal-home>
       <portal-ons name="ons"></portal-ons>
+      <portal-router name="router"></portal-router>
       <portal-about name="about"></portal-about>
       <portal-view404 name="view404"></portal-view404>
     </iron-pages>
