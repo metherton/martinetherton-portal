@@ -73,6 +73,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 request = api.generateRequest();
                 expect(request.xhr.method).to.be.equal('GET');
             });
+            test('add person dialog opened when add button pressed', function() {
+                var birthsView = fixture('BasicView');
+                birthsView.shadowRoot.querySelector('paper-icon-button').click();
+                expect(birthsView.shadowRoot.querySelector('#addPerson').opened).to.be.equal(true);
+            })
         });
     });
 </script>
