@@ -10,6 +10,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="portal-router-home">
@@ -39,13 +45,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <p class="home-title">Welcome to Route planner</p>
 
+        <paper-dialog id="addRoute" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <h2>Add Route</h2>
+            <div>
+                <paper-input floatingLabel="true" label="Start" value="{{editModel.start}}"></paper-input>
+                <paper-input floatingLabel="true" label="Destination" value="{{editModel.destination}}"></paper-input>
+            </div>
+            <div class="buttons">
+                <paper-button dialog-confirm tabindex="0" raised colored on-click="getWaypoints">Save</paper-button>
+                <paper-button dialog-dismiss tabindex="0" raised colored on-click="closePanel">Cancel</paper-button>
+            </div>
+        </paper-dialog>
 
+        <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
+
+        <paper-toast id="toast"></paper-toast>
+
+        <iron-ajax auto id="getWaypoints"
+                   handle-as="json"
+                   last-response="{{ajaxResponse}}" debounce-duration="300">
+
+        </iron-ajax>
     </template>
 
     <script>
         class PortalRouterHome extends Polymer.Element {
             static get is() {
                 return 'portal-router-home';
+            }
+            static get properties() {
+                return {
+                    prop1: {
+                        type: String,
+                        value: "bar"
+                    },
+                    editModel: {
+                        type: Object,
+                        notify: true
+                    },
+                    panelToggle: {
+                        type: String,
+                        value: "",
+                        notify: true
+                    }
+
+                }
+            }
+
+            json(obj) {
+                return JSON.stringify(obj, null, 2);
+            }
+
+            openPanel(e) {
+                var self = this;
+                this.$.addRoute.opened = true;
+                self.panelToggle = "toggled";
+                self.editModel = {start: "", destination: ""}
+            }
+
+            closePanel() {
+                this.panelToggle = "";
+            }
+
+            getWaypoints() {
+                var self = this;
+                self.$.getWaypoints.url = "http://www.martinetherton.com:8080/routeAdvices/" + "114.5_22.0/-72.0_40.0";
+              //  self.$.getWaypoints.contentType = "application/json";
+                self.$.getWaypoints.generateRequest();
+            }
+
+            saveRouteCallback() {
+                var self = this;
+                self.$.toast.text = "Route requested";
+                self.$.toast.show();
+                self.closePanel();
+               // self.$.getPersons.generateRequest();
             }
         }
 
