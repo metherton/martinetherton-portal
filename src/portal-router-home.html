@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="good-map.html">
 <link rel="import" href="shared-styles.html">
@@ -49,13 +50,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
-        <p class="home-title">Welcome to Route planner</p>
-
         <paper-dialog id="addRoute" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
             <h2>Add Route</h2>
             <div>
-                <paper-input floatingLabel="true" label="Start" value="{{editModel.start}}"></paper-input>
-                <paper-input floatingLabel="true" label="Destination" value="{{editModel.destination}}"></paper-input>
+                <paper-dropdown-menu label="Start Port">
+                    <paper-listbox attr-for-selected="value" slot="dropdown-content" selected="1">
+                        <template is="dom-repeat" items="[[ajaxResponseCities]]" indexAs="index">
+                            <paper-item value="[[item.longitude]]">[[item.name]]</paper-item>
+                        </template>
+                    </paper-listbox>
+                </paper-dropdown-menu>
+            </div>
+            <div>
+                <paper-dropdown-menu label="Destination Port">
+                    <paper-listbox attr-for-selected="value" selected="1">
+                        <template is="dom-repeat" items="[[ajaxResponseCities]]" indexAs="index">
+                            <paper-item value="[[item.longitude]]">[[item.name]]</paper-item>
+                        </template>
+                    </paper-listbox>
+                </paper-dropdown-menu>
             </div>
             <div class="buttons">
                 <paper-button dialog-confirm tabindex="0" raised colored on-click="getWaypoints">Save</paper-button>
@@ -69,14 +82,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <iron-ajax auto id="getWaypoints"
                    handle-as="json"
-                   last-response="{{ajaxResponse}}" debounce-duration="300">
+                   last-response="{{ajaxResponseWaypoints}}" debounce-duration="300">
+
+        </iron-ajax>
+
+        <iron-ajax auto id="getCities"
+                   handle-as="json"
+                   url="/resources/cities.json"
+                   last-response="{{ajaxResponseCities}}" debounce-duration="300">
 
         </iron-ajax>
 
         <good-map api-key="AIzaSyA-XiHqcr56619BrW1PZYzaTFnXVaMT6PY"
                   latitude="30"
                   longitude="-100" zoom="2"
-                  map-options='{"mapTypeId": "satellite"}'></good-map>
+                  map-options='{"mapTypeId": "satellite"}'>
+        </good-map>
 
     </template>
 
@@ -104,6 +125,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
 
+            ready() {
+                super.ready();
+                this.$.getCities.generateRequest();
+            }
+
             json(obj) {
                 return JSON.stringify(obj, null, 2);
             }
@@ -126,13 +152,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 self.$.getWaypoints.generateRequest();
             }
 
-            saveRouteCallback() {
-                var self = this;
-                self.$.toast.text = "Route requested";
-                self.$.toast.show();
-                self.closePanel();
-               // self.$.getPersons.generateRequest();
-            }
+//            saveRouteCallback() {
+//                var self = this;
+//                self.$.toast.text = "Route requested";
+//                self.$.toast.show();
+//                self.closePanel();
+//               // self.$.getPersons.generateRequest();
+//            }
         }
 
         window.customElements.define(PortalRouterHome.is, PortalRouterHome);
