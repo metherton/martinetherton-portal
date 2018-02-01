@@ -11,9 +11,7 @@
     "src/portal-ons-records-about.html",
     "src/portal-view404.html",
     "src/portal-router.html",
-    "src/portal-router-home.html",
-    "bower.json"
-
+    "src/portal-router-home.html"
   ],
   "sources": [
     "src/**/*",
