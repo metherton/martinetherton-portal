@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="good-map.html">
 <link rel="import" href="shared-styles.html">
 
@@ -81,7 +82,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
         </paper-dialog>
 
-        <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
+        <div>
+            <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
+            <paper-spinner style="left: 45%" id="fetchWaypoints"></paper-spinner>
+        </div>
 
         <paper-toast id="toast"></paper-toast>
 
@@ -95,7 +99,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    handle-as="json"
                    url="/resources/cities.json"
                    last-response="{{ajaxResponseCities}}" debounce-duration="300">
-
         </iron-ajax>
 
         <good-map api-key="AIzaSyA-XiHqcr56619BrW1PZYzaTFnXVaMT6PY"
@@ -126,7 +129,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         value: "",
                         notify: true
                     }
-
                 }
             }
 
@@ -153,7 +155,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             getWaypoints() {
                 var self = this;
                 self.$.getWaypoints.url = "http://www.martinetherton.com:8080/routeAdvices/" + this.$.addRoute.querySelector('#start').selected + "/" + this.$.addRoute.querySelector('#end').selected;
-                self.$.getWaypoints.generateRequest();
+                self.$.getWaypoints.generateRequest().completes.then(function(resp){
+                    self.$.fetchWaypoints.removeAttribute('active');
+                }, function(e) {
+                    self.$.fetchWaypoints.removeAttribute('active');
+                });
+                self.$.fetchWaypoints.setAttribute('active', true);
             }
         }
 
