@@ -21,8 +21,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/google-map/google-map-marker.html">
+<link rel="import" href="../bower_components/google-map/google-map-point.html">
+<link rel="import" href="../bower_components/google-map/google-map-poly.html">
+
 <link rel="import" href="good-map.html">
 <link rel="import" href="shared-styles.html">
+
 
 <dom-module id="portal-router-home">
     <template>
@@ -47,12 +53,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 cursor: pointer;
             }
 
+            google-map {
+                display: block;
+                height: 500px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
             good-map {
                 display: block;
                 height: 600px;
                 margin-left: 5px;
                 margin-right: 5px;
             }
+
 
         </style>
 
@@ -84,15 +98,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <div>
             <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
-            <paper-spinner style="left: 45%" id="fetchWaypoints"></paper-spinner>
+            <template is="dom-if" if="{{showSpinner}}">
+                <paper-spinner active style="left: 45%; margin-top: 15px; margin-bottom: 10px;" id="fetchWaypoints"></paper-spinner>
+            </template>
         </div>
 
-        <paper-toast id="toast"></paper-toast>
+        <paper-toast duration="7000" id="toast" text="Plotting line on map"></paper-toast>
 
         <iron-ajax auto id="getWaypoints"
                    handle-as="json"
                    last-response="{{ajaxResponseWaypoints}}" debounce-duration="300">
-
         </iron-ajax>
 
         <iron-ajax auto id="getCities"
@@ -101,11 +116,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                    last-response="{{ajaxResponseCities}}" debounce-duration="300">
         </iron-ajax>
 
-        <good-map api-key="AIzaSyA-XiHqcr56619BrW1PZYzaTFnXVaMT6PY"
-                  latitude="30"
-                  longitude="-100" zoom="2"
-                  map-options='{"mapTypeId": "satellite"}'>
-        </good-map>
+        <google-map stroke-color="red" map-type="satellite" latitude="37.779" zoom="2" longitude="-122.419" fit-to-markers api-key="AIzaSyA-XiHqcr56619BrW1PZYzaTFnXVaMT6PY">
+            <google-map-poly stroke-color="#DC143C" fill-color="#DC143C" fill-opacity=".5">
+            <template is="dom-repeat" items="[[convertWaypoints(ajaxResponseWaypoints.waypoints)]]" indexAs="index">
+                <google-map-point  latitude="[[item.latitude]]" longitude="[[item.longitude]]"></google-map-point>
+            </template>
+            </google-map-poly>
+            <template is="dom-repeat" items="[[convertWaypoints(ajaxResponseWaypoints.waypoints)]]" indexAs="index">
+                <google-map-marker slot="markers" hidden  latitude="[[item.latitude]]" longitude="[[item.longitude]]"></google-map-marker>
+            </template>
+        </google-map>
 
     </template>
 
@@ -128,13 +148,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         type: String,
                         value: "",
                         notify: true
+                    },
+                    showSpinner: {
+                        type: Boolean
                     }
+
                 }
             }
 
             ready() {
                 super.ready();
-                this.$.getCities.generateRequest();
+                this.$.getCities.generateRequest().completes.then(function(resp) {
+//                    this.ajaxResponseCities = resp;
+                });
             }
 
             json(obj) {
@@ -156,11 +182,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 var self = this;
                 self.$.getWaypoints.url = "http://www.martinetherton.com:8080/routeAdvices/" + this.$.addRoute.querySelector('#start').selected + "/" + this.$.addRoute.querySelector('#end').selected;
                 self.$.getWaypoints.generateRequest().completes.then(function(resp){
-                    self.$.fetchWaypoints.removeAttribute('active');
+                    self.showSpinner = false;
+                    self.$.toast.open();
                 }, function(e) {
-                    self.$.fetchWaypoints.removeAttribute('active');
+                    self.showSpinner = false;
+                    self.waypoints = self.ajaxResponseWaypoints.waypoints;
                 });
-                self.$.fetchWaypoints.setAttribute('active', true);
+                self.showSpinner = true;
+            }
+
+            convertWaypoints(waypoints) {
+                return waypoints.map(function(w) {
+                    var val = w.split("_");
+                    return {longitude: val[0], latitude: val[1]};
+                });
             }
         }
 
