@@ -53,8 +53,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     /*--app-grid-columns: 1;*/
                 /*}*/
             /*}*/
-            paper-card.white {
-                --paper-card-header-color: #fff;
+
+            paper-card {
+                --paper-card-content: {
+                    /*color: red;*/
+                }
+                /*--paper-card-header-color: blue;*/
+                --paper-card-header: {
+                    height: 45px;
+                }
             }
 
             paper-dialog {
@@ -94,20 +101,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <ul class="app-grid">
             <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index">
-                <!--<li class="item"><div class="horizontal"><paper-card heading="[[item.firstName]] [[item.surname]]"><div class="card-content">Born in [[item.placeOfBirth]] on [[item.dateOfBirth]]</div></paper-card></div></li>-->
-                <li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>
+                <!--<li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>-->
+                <paper-card heading="[[item.firstName]] [[item.surname]]">
+                    <div class="card-content">Born:&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</div>
+                </paper-card>
             </template>
         </ul>
 
         <paper-toast id="toast"></paper-toast>
 
 
-        <iron-ajax auto id="getWaypoints"
-                   url="http://www.martinetherton.com:8080/routeAdvices/114.5_22.0/-72.0_40.0"
-                   handle-as="json"
-                   last-response="{{ajaxResponse}}" debounce-duration="300">
+        <!--<iron-ajax auto id="getWaypoints"-->
+                   <!--url="http://www.martinetherton.com:8080/routeAdvices/114.5_22.0/-72.0_40.0"-->
+                   <!--handle-as="json"-->
+                   <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
 
-        </iron-ajax>
+        <!--</iron-ajax>-->
 
         <iron-ajax auto id="getPersons"
                     url="http://www.martinetherton.com:5001/users"
