@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             paper-tab {
                 color: white;
                 --paper-tab-ink: white;
-                border-right: solid thin;
+                /*border-right: solid thin;*/
             }
 
             .tab-links a {
@@ -66,6 +66,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             app-toolbar {
                 background: black;
+            }
+
+            .border-reduced {
+                border-right: 1px solid white;
+                position: relative;
+                top: 20%;
+                height: 60%;
+                /*bottom: 20%;*/
+                /*bottom: 50%;*/
             }
 
         </style>
@@ -91,10 +100,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <app-toolbar style="height:30px;">
                 <!--<span main-title>&nbsp;</span>-->
                 <paper-tabs class="tab-links" selected="[[page]]" attr-for-selected="name" style="width: 400px;">
-                   <paper-tab name="about"><a href="[[rootPath]]ons/records/about">About</a></paper-tab>
-                   <paper-tab name="births"><a href="[[rootPath]]ons/records/births">Births</a></paper-tab>
-                    <paper-tab name="marriages"><a href="[[rootPath]]ons/records/marriages">Marriages</a></paper-tab>
-                    <paper-tab name="deaths"><a href="[[rootPath]]ons/records/deaths">Deaths</a></paper-tab>
+                   <paper-tab name="about"><a href="[[rootPath]]ons/records/about">About1</a></paper-tab><div class="border-reduced"></div>
+                   <paper-tab name="births"><a href="[[rootPath]]ons/records/births">Births</a></paper-tab><div class="border-reduced"></div>
+                    <paper-tab name="marriages"><a href="[[rootPath]]ons/records/marriages">Marriages</a></paper-tab><div class="border-reduced"></div>
+                    <paper-tab name="deaths"><a href="[[rootPath]]ons/records/deaths">Deaths</a></paper-tab><div class="border-reduced"></div>
                     <paper-tab name="census"><a href="[[rootPath]]ons/records/census">Census</a></paper-tab>
                 </paper-tabs>
                 <div main-title>&nbsp;</div>
