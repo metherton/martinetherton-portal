@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/app-layout/app-grid/app-grid-style.html">
 <link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -31,11 +32,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             :host {
-                --app-grid-columns: 3;
-                --app-grid-item-height: 160px;
-                --app-grid-gutter: 5px;
                 /*--app-grid-expandible-item-columns: 3;*/
             }
+
+            .threeColumns {
+                --app-grid-columns: 3;
+                --app-grid-item-height: 140px;
+                --app-grid-gutter: 5px;
+            }
+
+            .oneColumn {
+                --app-grid-columns: 1;
+                --app-grid-item-height: 160px;
+            }
+
 
             ul {
                 padding: 0;
@@ -84,6 +94,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
+        <iron-media-query query="max-width: 767px" query-matches="{{smallScreen}}"></iron-media-query>
+
         <paper-dialog id="addPerson" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
             <h2>Add Person</h2>
             <div>
@@ -100,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
 
-        <ul class="app-grid">
+        <ul id="birthGrid" class="app-grid">
             <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index">
                 <!--<li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>-->
                 <paper-card heading="[[item.firstName]] [[item.surname]]">
@@ -142,6 +154,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             static get properties() {
                 return {
+                    _isSmallScreen: {
+                        computed: '_computeIsSmallScreen(smallScreen)'
+                    },
                     prop1: {
                         type: String,
                         value: "bar"
@@ -157,6 +172,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     }
 
                 }
+            }
+
+            ready() {
+                super.ready();
+                if (this.smallScreen) {
+                    this.$.birthGrid.classList.add('oneColumn');
+                } else {
+                    this.$.birthGrid.classList.add('threeColumns');
+                }
+            }
+
+            _computeIsSmallScreen(smallScreen) {
+                return !smallScreen;
             }
 
             json(obj) {
