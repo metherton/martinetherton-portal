@@ -89,6 +89,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 background-color: #a8a8a8;
             }
 
+            .blue {
+                background-color: lightblue;
+            }
+
+            .red {
+                background-color: mistyrose;
+            }
+
             .lightgray {
                 background-color: #e5e5e5;
             }
@@ -104,6 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>
                 <paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>
                 <paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>
+                <paper-checkbox on-change="selectGender" checked>Male</paper-checkbox>
             </div>
             <div class="buttons">
                 <paper-button dialog-confirm tabindex="0" raised colored on-click="savePerson">Save</paper-button>
@@ -116,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <ul id="birthGrid" class="app-grid">
             <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index">
                 <!--<li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>-->
-                <paper-card heading="[[item.firstName]] [[item.surname]]">
+                <paper-card heading="[[item.firstName]] [[item.surname]]" class$="{{_getClass(item.gender)}}" >
                     <div class="card-content">Born:&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</div>
                 </paper-card>
             </template>
@@ -196,11 +205,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 var self = this;
                 this.$.addPerson.opened = true;
                 self.panelToggle = "toggled";
-                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:""}
+                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:"", gender: "male"}
             }
 
             closePanel() {
                 this.panelToggle = "";
+            }
+
+            selectGender(event) {
+                var self = this;
+                if (event.target.checked) {
+                    self.editModel.gender = "male";
+                } else {
+                    self.editModel.gender = "female";
+                }
+            }
+
+            _getClass(gender) {
+                return gender === "male" ? "blue" : "red";
             }
 
             savePerson() {
