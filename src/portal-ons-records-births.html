@@ -123,7 +123,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-icon-button icon="add" on-tap="openPanel"></paper-icon-button>
 
         <ul id="birthGrid" class="app-grid">
-            <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index">
+            <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index" sort="_sort">
                 <!--<li class$="{{productClass(index)}}">[[item.firstName]] [[item.surname]]</li><li class$="{{productClass(index)}}">[[item.placeOfBirth]]</li><li class$="{{productClass(index)}}">[[item.dateOfBirth]]</li>-->
                 <paper-card heading="[[item.firstName]] [[item.surname]]" class$="{{_getClass(item.gender)}}" >
                     <div class="card-content">Born:&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</div>
@@ -199,6 +199,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             json(obj) {
                 return JSON.stringify(obj, null, 2);
+            }
+
+            _sort(a, b) {
+                return a < b ? -1 : 1;
             }
 
             openPanel(e) {
