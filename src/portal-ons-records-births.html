@@ -202,7 +202,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             _sort(a, b) {
-                return a < b ? -1 : 1;
+                return a.dateOfBirth < b.dateOfBirth ? -1 : 1;
             }
 
             openPanel(e) {
@@ -248,11 +248,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 let color = index % 2 == 0 ? 'white' : 'lightgray';
                 return 'item ' + color;
             }
-
-
-
-
-
         }
 
         window.customElements.define(PortalOnsRecordsBirths.is, PortalOnsRecordsBirths);
