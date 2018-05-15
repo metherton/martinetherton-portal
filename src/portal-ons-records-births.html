@@ -60,11 +60,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             .item:first-child {
                 @apply --app-grid-expandible-item;
             }
-            /*@media (max-width: 640px) {*/
-                /*:host {*/
-                    /*--app-grid-columns: 1;*/
-                /*}*/
-            /*}*/
+            @media (max-width: 640px) {
+                :host {
+                    --app-grid-columns: 1;
+                }
+            }
 
             paper-card {
                 --paper-card-content: {

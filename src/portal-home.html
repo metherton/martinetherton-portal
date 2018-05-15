@@ -19,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
+        /*display: flex;*/
 
         /*padding: 10px;*/
       }
@@ -28,30 +29,62 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-card {
-        margin-left: 24px;
+        /*margin-left: 24px;*/
+        --paper-card-header-color: white;
+        --paper-card-header-text: {
+          font-size: 36px;
+        }
+      }
+
+      paper-card.right {
+        /*margin-left: 24px;*/
+        --paper-card-header-color: white;
+        --paper-card-header-text: {
+          font-size: 24px;
+        }
       }
 
       paper-card:hover {
         cursor: pointer;
       }
 
+
     </style>
     <style include="app-grid-style">
-      :host {
-        --app-grid-columns: 3;
-        --app-grid-item-height: 100px;
-        --app-grid-gutter: 5px;
-        --app-grid-expandible-item-columns: 3;
-      }
-      ul {
-        padding: 0;
-        list-style: none;
-      }
       @media (max-width: 640px) {
         :host {
           --app-grid-columns: 1;
         }
       }
+
+      :host {
+        --app-grid-columns: 2;
+        --app-grid-gutter: 5px;
+        /*--app-grid-item-height: 100px;*/
+        /*--app-grid-expandible-item-columns: 2;*/
+      }
+
+      :host {
+        --app-grid-item-height: 340px;
+      }
+
+      :host .right {
+        --app-grid-item-height: 170px;
+      }
+
+      /*.item:first-child {*/
+        /*@apply --app-grid-expandible-item;*/
+      /*}*/
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+      .item {
+        /*background-color: red;*/
+        /*border-style: solid;*/
+      }
+
     </style>
 
 
@@ -59,17 +92,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <p class="home-title">Welcome to MartinEtherton.com</p>
     <!--<paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>-->
-    <ul id="homeGrid" class="app-grid">
-      <li>
-        <paper-card heading="Etherton One Name Study" class="item" ></paper-card>
-      </li>
-      <li>
-        <paper-card heading="Etherton One Name Study" class="item" ></paper-card>
-      </li>
-      <li>
-        <paper-card heading="Etherton One Name Study" class="item" ></paper-card>
-      </li>
+    <ul class="app-grid">
+      <li class="item left">
+        <paper-card on-tap="gotoOns" heading="Etherton One Name Study" image="../images/sussex1.jpg"></paper-card>
+        <!--<ul class="app-grid">-->
+          <!--<li><paper-card on-tap="gotoOns" heading="Etherton One Name Study" image="../images/sussex1.jpg"></paper-card></li>-->
+        <!--</ul>-->
 
+      </li>
+      <li class="right">
+        <ul class="app-grid">
+          <li><paper-card class="right" on-tap="gotoLondon" image="../images/london1.jpeg" heading="London Ethertons"></paper-card></li>
+          <li><paper-card class="right" on-tap="gotoBirths" image="../images/births.jpg" ></paper-card></li>
+        </ul>
+        <ul class="app-grid">
+          <li><paper-card class="right" on-tap="gotoMarriages" image="../images/marriages.jpeg"  heading="Marriages"></paper-card></li>
+          <li><paper-card class="right" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
+        </ul>
+      </li>
     </ul>
 
   </template>
@@ -81,6 +121,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       gotoOns() {
         let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
         event.page = '/ons';
+        this.dispatchEvent(event);
+      }
+
+      gotoBirths() {
+        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        event.page = '/ons/records/births';
+        this.dispatchEvent(event);
+      }
+
+      gotoLondon() {
+        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        event.page = '/ons/london1';
         this.dispatchEvent(event);
       }
 
