@@ -51,17 +51,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
     <style include="app-grid-style">
-      @media (max-width: 640px) {
-        :host {
-          --app-grid-columns: 1;
-        }
-      }
-
       :host {
         --app-grid-columns: 2;
         --app-grid-gutter: 5px;
         /*--app-grid-item-height: 100px;*/
         /*--app-grid-expandible-item-columns: 2;*/
+      }
+      .twoColumns {
+        --app-grid-columns: 2;
+      }
+
+      .oneColumn {
+        --app-grid-columns: 1;
       }
 
       :host {
@@ -85,6 +86,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         /*border-style: solid;*/
       }
 
+      /*@media (max-width: 640px) {*/
+        /*:host {*/
+          /*--app-grid-columns: 1;*/
+        /*}*/
+      /*}*/
+
     </style>
 
 
@@ -92,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <p class="home-title">Welcome to MartinEtherton.com</p>
     <!--<paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>-->
-    <ul class="app-grid">
+    <ul id="leftGrid" class="app-grid">
       <li class="item left">
         <paper-card on-tap="gotoOns" heading="Etherton One Name Study" image="../images/sussex1.jpg"></paper-card>
         <!--<ul class="app-grid">-->
@@ -101,11 +108,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       </li>
       <li class="right">
-        <ul class="app-grid">
+        <ul id="rightGrid1" class="app-grid">
           <li><paper-card class="right" on-tap="gotoLondon" image="../images/london1.jpeg" heading="London Ethertons"></paper-card></li>
           <li><paper-card class="right" on-tap="gotoBirths" image="../images/births.jpg" ></paper-card></li>
         </ul>
-        <ul class="app-grid">
+        <ul id="rightGrid2" class="app-grid">
           <li><paper-card class="right" on-tap="gotoMarriages" image="../images/marriages.jpeg"  heading="Marriages"></paper-card></li>
           <li><paper-card class="right" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
         </ul>
@@ -117,6 +124,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class PortalHome extends Polymer.Element {
       static get is() { return 'portal-home'; }
+      static get properties() {
+        return {
+          _isSmallScreen: {
+            computed: '_computeIsSmallScreen(smallScreen)'
+          }
+        }
+      }
+
+      _computeIsSmallScreen(smallScreen) {
+        return !smallScreen;
+      }
 
       gotoOns() {
         let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
@@ -138,10 +156,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready() {
         super.ready();
-//        if (this.smallScreen) {
-//          this.$.homeGrid.classList.add('oneColumn');
+        if (this.smallScreen) {
+          this.$.leftGrid.classList.add('oneColumn');
+          this.$.rightGrid1.classList.add('oneColumn');
+          this.$.rightGrid1.classList.add('oneColumn');
+        }
 //        } else {
-//          this.$.homeGrid.classList.add('threeColumns');
+//          this.$.leftGrid.classList.add('twoColumns');
 //        }
       }
 
