@@ -40,12 +40,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-card-header-color: white;
         --paper-card-header-text: {
           font-size: 24px;
-
+          font-weight: bold;
         }
       }
 
       paper-card.twoColumns {
-        font-size: 14px;
+        --paper-card-header-color: blue;
+        --paper-card-header-text: {
+          font-size: 36px;
+          font-weight: bold;
+        }
       }
 
       paper-card.right {
@@ -143,7 +147,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-if" if="[[!smallScreen]]">
       <ul class="app-grid twoColumns">
         <li>
-          <paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
+          <paper-card class="twoColumns" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
         </li>
         <li>
           <ul class="app-grid twoColumns">
