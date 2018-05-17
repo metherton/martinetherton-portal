@@ -30,15 +30,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-card {
         /*margin-left: 24px;*/
-        --paper-card-header-color: white;
+        --paper-card-header-color: blue;
         --paper-card-header-text: {
-          font-size: 36px;
+          /*font-size: 36px;*/
         }
+      }
+
+      paper-card.oneColumn {
+        --paper-card-header-text: {
+          font-size: 14px;
+        }
+      }
+
+      paper-card.twoColumns {
+        font-size: 14px;
       }
 
       paper-card.right {
         /*margin-left: 24px;*/
-        --paper-card-header-color: white;
+        --paper-card-header-color: blue;
         --paper-card-header-text: {
           font-size: 24px;
         }
@@ -135,12 +145,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </li>
         <li>
           <ul class="app-grid twoColumns">
-            <li><paper-card on-tap="gotoLondon"  heading="London Ethertons"></paper-card></li>
-            <li><paper-card on-tap="gotoBirths" heading="Births"></paper-card></li>
+            <li><paper-card on-tap="gotoLondon" class="oneColumn" heading="London Ethertons"></paper-card></li>
+            <li><paper-card on-tap="gotoBirths" class="oneColumn" heading="Births"></paper-card></li>
           </ul>
           <ul class="app-grid twoColumns">
-            <li><paper-card on-tap="gotoMarriages"   heading="Marriages"></paper-card></li>
-            <li><paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
+            <li><paper-card on-tap="gotoMarriages" class="oneColumn" heading="Marriages"></paper-card></li>
+            <li><paper-card on-tap="gotoOns" class="oneColumn" heading="Etherton One Name Study"></paper-card></li>
           </ul>
         </li>
       </ul>
@@ -154,11 +164,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!--<li><paper-card  on-tap="gotoMarriages" image="../images/marriages.jpeg"  heading="Marriages"></paper-card></li>-->
         <!--<li><paper-card  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>-->
 
-        <li><paper-card on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
-        <li><paper-card on-tap="gotoLondon" heading="London Ethertons"></paper-card></li>
-        <li><paper-card  on-tap="gotoBirths" heading="Births" ></paper-card></li>
-        <li><paper-card  on-tap="gotoMarriages" heading="Marriages"></paper-card></li>
-        <li><paper-card  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
+        <li><paper-card class="oneColumn" on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
+        <li><paper-card class="oneColumn" on-tap="gotoLondon" heading="London Ethertons"></paper-card></li>
+        <li><paper-card  class="oneColumn" on-tap="gotoBirths" heading="Births" ></paper-card></li>
+        <li><paper-card  class="oneColumn" on-tap="gotoMarriages" heading="Marriages"></paper-card></li>
+        <li><paper-card  class="oneColumn" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
 
       </ul>
     </template>
