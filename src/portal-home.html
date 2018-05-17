@@ -45,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-card.twoColumns {
-        --paper-card-header-color: blue;
+        --paper-card-header-color: white;
         --paper-card-header-text: {
           font-size: 36px;
           font-weight: bold;
@@ -54,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       paper-card.right {
         /*margin-left: 24px;*/
-        --paper-card-header-color: blue;
+        --paper-card-header-color: white;
         --paper-card-header-text: {
           font-size: 24px;
         }
@@ -73,12 +73,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         /*!*--app-grid-item-height: 100px;*!*/
         /*!*--app-grid-expandible-item-columns: 2;*!*/
       /*}*/
+
+      /*ul.app-grid.twoColumns.full {*/
+        /*--app-grid-item-height: 100px;*/
+      /*}*/
+
       .twoColumns {
         --app-grid-columns: 2;
+        /*--app-grid-gutter: 10px;*/
       }
 
       .oneColumn {
         --app-grid-columns: 1;
+        /*--app-grid-gutter: 5px;*/
       }
 
       /*.oneColumn li {*/
@@ -98,14 +105,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         /*@apply --app-grid-expandible-item;*/
       /*}*/
 
+
+
       ul {
         padding: 0;
         list-style: none;
       }
 
       ul.app-grid li {
-        background-color: red;
-        border-style: solid;
+        /*background-color: red;*/
+        /*border-style: solid;*/
+      }
+
+      .half {
+        --app-grid-gutter: 5px;
       }
 
       .item {
@@ -145,18 +158,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!--</template>-->
 
     <template is="dom-if" if="[[!smallScreen]]">
-      <ul class="app-grid twoColumns">
-        <li>
-          <paper-card class="twoColumns" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
+      <ul class="app-grid twoColumns full">
+        <li style="padding-left: 4px">
+          <paper-card class="twoColumns" image="../images/sussex1.jpg"  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
         </li>
         <li>
-          <ul class="app-grid twoColumns">
-            <li><paper-card on-tap="gotoLondon" class="oneColumn" heading="London Ethertons"></paper-card></li>
-            <li><paper-card on-tap="gotoBirths" class="oneColumn" heading="Births"></paper-card></li>
+          <ul style="margin-top: -5px"  class="app-grid twoColumns half">
+            <li><paper-card on-tap="gotoLondon" image="../images/sussex1.jpg"  class="oneColumn" heading="London Ethertons"></paper-card></li>
+            <li><paper-card on-tap="gotoBirths" image="../images/sussex1.jpg"  class="oneColumn" heading="Sussex Ethertons"></paper-card></li>
           </ul>
-          <ul class="app-grid twoColumns">
-            <li><paper-card on-tap="gotoMarriages" class="oneColumn" heading="Marriages"></paper-card></li>
-            <li><paper-card on-tap="gotoOns" class="oneColumn" heading="Etherton One Name Study"></paper-card></li>
+          <ul style="margin-top: -11px" class="app-grid twoColumns half">
+            <li ><paper-card on-tap="gotoMarriages" image="../images/sussex1.jpg"  class="oneColumn" heading="Births"></paper-card></li>
+            <li ><paper-card on-tap="gotoOns" image="../images/sussex1.jpg"  class="oneColumn" heading="Marriages"></paper-card></li>
           </ul>
         </li>
       </ul>
@@ -172,9 +185,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <li><paper-card class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
         <li><paper-card class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoLondon" heading="London Ethertons"></paper-card></li>
-        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoBirths" heading="Births" ></paper-card></li>
-        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoMarriages" heading="Marriages"></paper-card></li>
-        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>
+        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoBirths" heading="Sussex Ethertons" ></paper-card></li>
+        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoMarriages" heading="Births"></paper-card></li>
+        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Marriages"></paper-card></li>
 
       </ul>
     </template>
