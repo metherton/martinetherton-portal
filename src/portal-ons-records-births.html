@@ -7,13 +7,17 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
+<script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+<script src="../bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
+<link rel="import" href="../bower_components/neon-animation/web-animations.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
@@ -112,6 +116,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>
                 <paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>
                 <paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>
+                <div style="margin-top: 5px; margin-bottom: 20px">
+                    <paper-dropdown-menu class="custom" label="Etherton Branch">
+                        <paper-listbox id="branch" slot="dropdown-content" class="dropdown-content" attr-for-selected="value" selected="{{editModel.branch}}">
+                            <paper-item value="london1">London 1</paper-item>
+                            <paper-item value="sussex1">Sussex 1</paper-item>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                </div>
                 <paper-checkbox on-change="selectGender" checked>Male</paper-checkbox>
             </div>
             <div class="buttons">
@@ -209,7 +221,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 var self = this;
                 this.$.addPerson.opened = true;
                 self.panelToggle = "toggled";
-                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:"", gender: "male"}
+                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:"", gender: "male", branch: "london1"}
             }
 
             closePanel() {
