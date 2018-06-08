@@ -37,7 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
-        <p class="home-title">Welcome to ONS home</p>
+        <p class="home-title">Welcome to ONS home : family is [[family]]</p>
 
         <paper-card heading="London(1) Ethertons"></paper-card>
         <paper-card heading="London(2) Ethertons"></paper-card>
@@ -51,6 +51,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             static get is() {
                 return 'portal-ons-home';
             }
+
+            static get properties() {
+                return {
+                    family: String
+                };
+            }
+
         }
 
         window.customElements.define(PortalOnsHome.is, PortalOnsHome);
