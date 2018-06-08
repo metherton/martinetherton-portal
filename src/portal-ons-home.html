@@ -37,12 +37,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
-        <p class="home-title">Welcome to ONS home : family is [[family]]</p>
+        <template is="dom-if" if="{{isAll(family)}}">
+            <p class="home-title">Welcome to ONS home</p>
+        </template>
 
-        <paper-card heading="London(1) Ethertons"></paper-card>
-        <paper-card heading="London(2) Ethertons"></paper-card>
-        <paper-card heading="Sussex(1) Ethertons"></paper-card>
-        <paper-card heading="Sussex(2) Ethertons"></paper-card>
+        <template is="dom-if" if="{{isLondon1(family)}}">
+            <paper-card heading="London(1) Ethertons"></paper-card>
+        </template>
+
+        <template is="dom-if" if="{{isSussex1(family)}}">
+            <paper-card heading="Sussex(1) Ethertons"></paper-card>
+        </template>
 
     </template>
 
@@ -58,6 +63,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 };
             }
 
+            isLondon1(family) {
+                return family === 'london1';
+            }
+
+            isSussex1(family) {
+                return family === 'sussex1';
+            }
+
+            isAll(family) {
+                return family === 'all';
+            }
         }
 
         window.customElements.define(PortalOnsHome.is, PortalOnsHome);

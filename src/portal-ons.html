@@ -163,11 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
-          family: {
-            type: String,
-            reflectToAttribute: true,
-            observer: '_familyChanged'
-          }
+          family: String
         };
       }
 
@@ -207,14 +203,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 true);
       }
 
-      _familyChanged(family) {
-        this.family = family;
-      }
-
       _showPage404() {
         this.page = 'view404';
       }
-
 
     }
 

@@ -204,7 +204,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         fallback-selection="view404"
         role="main">
       <portal-home name="home"></portal-home>
-      <portal-ons family="london1" name="ons"></portal-ons>
+      <portal-ons family="[[family]]" name="ons"></portal-ons>
       <portal-router name="router"></portal-router>
       <portal-about name="about"></portal-about>
       <portal-view404 name="view404"></portal-view404>
@@ -227,7 +227,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           subroute: String,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
-          rootPath: String
+          rootPath: String,
+          family: String
         };
       }
 
@@ -239,11 +240,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready() {
         super.ready();
+        this.family = 'all';
         this.addEventListener('gotoPage', e => this._gotoPage(e));
       }
 
       _gotoPage(event) {
         this.set('route.path', event.page);
+        this.family = event.family;
       }
 
       _routePageChanged(page) {
