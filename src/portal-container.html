@@ -254,6 +254,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Default to 'view1' in that case.
         this.page = page || 'home';
 
+        if (page === 'home') {
+          this.family = 'all';
+        }
+
         // Close a non-persistent drawer when the page & route are changed.
 //        if (!this.$.drawer.persistent) {
 //          this.$.drawer.close();

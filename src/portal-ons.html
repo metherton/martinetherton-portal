@@ -113,7 +113,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <app-header style="border-bottom: solid thin silver">
       <app-toolbar style="height:80px">
-        <span class="title" main-title>One Name Study</span>
+        <template is="dom-if" if="{{isAll(family)}}">
+          <span class="title" main-title>One Name Study</span>
+        </template>
+
+        <template is="dom-if" if="{{isLondon1(family)}}">
+          <span class="title" main-title>London (1) Ethertons</span>
+        </template>
+
+        <template is="dom-if" if="{{isSussex1(family)}}">
+          <span class="title" main-title>Sussex (1) Ethertons</span>
+        </template>
+
       </app-toolbar>
     </app-header>
     <app-header>
@@ -205,6 +216,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _showPage404() {
         this.page = 'view404';
+      }
+
+      isLondon1(family) {
+        return family === 'london1';
+      }
+
+      isSussex1(family) {
+        return family === 'sussex1';
+      }
+
+      isAll(family) {
+        return family === 'all';
       }
 
     }
