@@ -151,12 +151,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!--</iron-ajax>-->
 
-        <iron-ajax auto id="getPersons"
-                    url="http://www.martinetherton.com:5001/users"
-                    handle-as="json"
-                    last-response="{{ajaxResponse}}" debounce-duration="300">
+        <template is="dom-if" if="{{!isAll(family)}}">
+            <iron-ajax auto id="getPersons"
+                       url="http://www.martinetherton.com:5001/users"
+                       handle-as="json"
+                       last-response="{{ajaxResponse}}" debounce-duration="300" params='{{_getParams(family)}}'>
 
-        </iron-ajax>
+            </iron-ajax>
+        </template>
+        <template is="dom-if" if="{{isAll(family)}}">
+            <iron-ajax auto id="getPersons"
+                       url="http://www.martinetherton.com:5001/users"
+                       handle-as="json"
+                       last-response="{{ajaxResponse}}" debounce-duration="300">
+
+            </iron-ajax>
+        </template>
+
+
+
         <iron-ajax id="savePerson"
                    url="http://www.martinetherton.com:5001/users"
                    handle-as="json" method="POST" on-response="savePersonCallback" debounce-duration="300">
@@ -189,7 +202,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         type: String,
                         value: "",
                         notify: true
-                    }
+                    },
+                    family: String
 
                 }
             }
@@ -203,6 +217,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
             }
 
+            _getParams(family) {
+                return {branch:family};
+            }
+
             _computeIsSmallScreen(smallScreen) {
                 return !smallScreen;
             }
@@ -213,6 +231,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             _sort(a, b) {
                 return a.dateOfBirth < b.dateOfBirth ? -1 : 1;
+            }
+
+            isAll(family) {
+                return family === 'all';
             }
 
             openPanel(e) {

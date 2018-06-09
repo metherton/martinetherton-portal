@@ -36,6 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         </style>
 
+
         <paper-card on-tap="gotoBirths" heading="Births"></paper-card>
         <paper-card heading="Marriages"></paper-card>
         <paper-card heading="Deaths"></paper-card>
@@ -50,9 +51,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             static get is() {
                 return 'portal-ons-records-about';
             }
+            static get properties() {
+                return {
+                    family: {
+                        type: String,
+                        reflectToAttribute: true
+                    }
+                };
+            }
+
             gotoBirths() {
                 let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
                 event.page = '/ons/records/births';
+                event.family = this.family;
                 this.dispatchEvent(event);
             }
 

@@ -142,24 +142,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-media-query query="max-width: 767px" query-matches="{{smallScreen}}"></iron-media-query>
 
     <p class="home-title">Welcome to MartinEtherton.com</p>
-    <!--<paper-card on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>-->
-    <!--<template is="dom-if" if="[[smallScreen]]">-->
-      <!--<ul id="leftGrid" class="app-grid">-->
-        <!--<li class="item left">-->
-          <!--<paper-card on-tap="gotoOns" heading="Etherton One Name Study" image="../images/sussex1.jpg"></paper-card>-->
-        <!--</li>-->
-        <!--<li class="right">-->
-          <!--<ul id="rightGrid1" class="app-grid">-->
-            <!--<li><paper-card class="right" on-tap="gotoLondon" image="../images/london1.jpeg" heading="London Ethertons"></paper-card></li>-->
-            <!--<li><paper-card class="right" on-tap="gotoBirths" image="../images/births.jpg" ></paper-card></li>-->
-          <!--</ul>-->
-          <!--<ul id="rightGrid2" class="app-grid">-->
-            <!--<li><paper-card class="right" on-tap="gotoMarriages" image="../images/marriages.jpeg"  heading="Marriages"></paper-card></li>-->
-            <!--<li><paper-card class="right" on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>-->
-          <!--</ul>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</template>-->
 
     <template is="dom-if" if="[[!smallScreen]]">
       <ul class="app-grid twoColumns full">
@@ -168,8 +150,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </li>
         <li>
           <ul style="margin-top: -5px"  class="app-grid twoColumns half">
-            <li><paper-card on-tap="gotoLondon" image="../images/hp.png"  class="oneColumn" heading="London Ethertons"></paper-card></li>
-            <li><paper-card on-tap="gotoBirths" image="../images/sussex1.jpg"  class="oneColumn" heading="Sussex Ethertons"></paper-card></li>
+            <li><paper-card on-tap="gotoLondon1" image="../images/hp.png"  class="oneColumn" heading="London Ethertons"></paper-card></li>
+            <li><paper-card on-tap="gotoSussex1" image="../images/sussex1.jpg"  class="oneColumn" heading="Sussex Ethertons"></paper-card></li>
           </ul>
           <ul style="margin-top: -11px" class="app-grid twoColumns half">
             <li ><paper-card id="births" on-tap="gotoBirths" image="../images/birth_sid.jpg"  class="oneColumn" heading="Births"></paper-card></li>
@@ -181,15 +163,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <template is="dom-if" if="[[smallScreen]]">
       <ul style="padding-left: 4px; padding-right: 4px" class="app-grid oneColumn">
-        <!--<li><paper-card on-tap="gotoOns" heading="Etherton One Name Study" image="../images/sussex1.jpg"></paper-card></li>-->
-        <!--<li><paper-card on-tap="gotoLondon" image="../images/london1.jpeg" heading="London Ethertons"></paper-card></li>-->
-        <!--<li><paper-card  on-tap="gotoBirths" image="../images/births.jpg" ></paper-card></li>-->
-        <!--<li><paper-card  on-tap="gotoMarriages" image="../images/marriages.jpeg"  heading="Marriages"></paper-card></li>-->
-        <!--<li><paper-card  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card></li>-->
-
         <li><paper-card class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
-        <li><paper-card class="oneColumn" image="../images/hp.png" on-tap="gotoLondon" heading="London Ethertons"></paper-card></li>
-        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoBirths" heading="Sussex Ethertons" ></paper-card></li>
+        <li><paper-card class="oneColumn" image="../images/hp.png" on-tap="gotoLondon1" heading="London Ethertons"></paper-card></li>
+        <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoSussex1" heading="Sussex Ethertons" ></paper-card></li>
         <li><paper-card id="births" class="oneColumn" image="../images/birth_sid.jpg" on-tap="gotoBirths" heading="Births"></paper-card></li>
         <li><paper-card id="marriages" class="oneColumn" image="../images/marriage.jpeg" on-tap="gotoMarriages" heading="Marriages"></paper-card></li>
 
@@ -215,6 +191,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       gotoOns() {
         let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
         event.page = '/ons';
+        event.family = 'all';
         this.dispatchEvent(event);
       }
 
@@ -224,12 +201,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.dispatchEvent(event);
       }
 
-      gotoLondon() {
+      gotoLondon1() {
         let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
         event.page = '/ons';
         event.family = 'london1';
         this.dispatchEvent(event);
       }
+
+      gotoSussex1() {
+        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        event.page = '/ons';
+        event.family = 'sussex1';
+        this.dispatchEvent(event);
+      }
+
 
       ready() {
         super.ready();

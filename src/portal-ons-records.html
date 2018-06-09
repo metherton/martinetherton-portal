@@ -115,8 +115,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 attr-for-selected="name"
                 fallback-selection="view404"
                 role="main">
-            <portal-ons-records-about name="about"></portal-ons-records-about>
-            <portal-ons-records-births name="births"></portal-ons-records-births>
+            <portal-ons-records-about family="[[family]]" name="about"></portal-ons-records-about>
+            <portal-ons-records-births family="[[family]]" name="births"></portal-ons-records-births>
             <portal-ons-records-marriages name="marriages"></portal-ons-records-marriages>
             <portal-ons-records-deaths name="deaths"></portal-ons-records-deaths>
             <portal-ons-records-census name="census"></portal-ons-records-census>
@@ -147,7 +147,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     subroute: String,
                     // This shouldn't be neccessary, but the Analyzer isn't picking up
                     // Polymer.Element#rootPath
-                    rootPath: String
+                    rootPath: String,
+                    family: {
+                        type: String,
+                        reflectToAttribute: true
+                    }
                 };
             }
 
@@ -164,6 +168,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             _gotoPage(event) {
                 this.set('route.path', event.page);
+                this.family = event.family;
             }
 
             _routePageChanged(page) {
