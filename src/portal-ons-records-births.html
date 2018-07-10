@@ -138,6 +138,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="card-content">Born:&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</div>
                 </paper-card>
             </template>
+            <!--<template is="dom-repeat" items="[[ajaxResponse]]">-->
+                <!--<paper-card heading="[[item.email]]">-->
+                    <!--<div class="card-content">Born:&nbsp;[[item.email]]</div>-->
+                <!--</paper-card>-->
+            <!--</template>-->
         </ul>
 
         <paper-toast id="toast"></paper-toast>
@@ -152,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <template is="dom-if" if="{{!isAll(family)}}">
             <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:5001/users"
+                       url="http://www.martinetherton.com:8080/users"
                        handle-as="json"
                        last-response="{{ajaxResponse}}" debounce-duration="300" params='{{_getParams(family)}}'>
 
@@ -160,12 +165,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
         <template is="dom-if" if="{{isAll(family)}}">
             <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:5001/users"
+                       url="http://www.martinetherton.com:8080/users"
                        handle-as="json"
                        last-response="{{ajaxResponse}}" debounce-duration="300">
 
             </iron-ajax>
         </template>
+
+        <!--<iron-ajax auto id="getPersons"-->
+                   <!--url="http://localhost:8080/users"-->
+                   <!--handle-as="json"-->
+                   <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
+
+        <!--</iron-ajax>-->
+
 
 
         <iron-ajax id="savePerson"
