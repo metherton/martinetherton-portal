@@ -157,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <template is="dom-if" if="{{!isAll(family)}}">
             <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:8080/users"
+                       url="http://www.martinetherton.com:80/users"
                        handle-as="json"
                        last-response="{{ajaxResponse}}" debounce-duration="300" params='{{_getParams(family)}}'>
 
@@ -165,7 +165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </template>
         <template is="dom-if" if="{{isAll(family)}}">
             <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:8080/users"
+                       url="http://www.martinetherton.com:80/users"
                        handle-as="json"
                        last-response="{{ajaxResponse}}" debounce-duration="300">
 
@@ -182,7 +182,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
         <iron-ajax id="savePerson"
-                   url="http://www.martinetherton.com:5001/users"
+                   url="http://www.martinetherton.com:80/users"
                    handle-as="json" method="POST" on-response="savePersonCallback" debounce-duration="300">
 
         </iron-ajax>
