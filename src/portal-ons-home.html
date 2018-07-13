@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
 
     <script>
-        class PortalOnsHome extends Polymer.Element {
+        class PortalOnsHome extends window.Polymer.Element {
           static get is() {
             return 'portal-ons-home';
           }
@@ -74,15 +74,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             };
           }
 
-          isLondon1(family) {
+          static isLondon1(family) {
             return family === 'london1';
           }
 
-          isSussex1(family) {
+          static isSussex1(family) {
             return family === 'sussex1';
           }
 
-          isAll(family) {
+          static isAll(family) {
             return family === 'all';
           }
         }

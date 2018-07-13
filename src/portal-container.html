@@ -213,7 +213,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class PortalContainer extends Polymer.Element {
+    class PortalContainer extends window.Polymer.Element {
       static get is() { return 'portal-container'; }
 
       static get properties() {
@@ -257,22 +257,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         if (page === 'home') {
           this.family = 'all';
         }
-
-        // Close a non-persistent drawer when the page & route are changed.
-    //        if (!this.$.drawer.persistent) {
-    //          this.$.drawer.close();
-    //        }
       }
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
         const resolvedPageUrl = this.resolveUrl(`portal-${page}.html`);
-        Polymer.importHref(
+        window.Polymer.importHref(
           resolvedPageUrl,
           null,
           this._showPage404.bind(this),
           true,
-    );
+        );
       }
 
       _showPage404() {

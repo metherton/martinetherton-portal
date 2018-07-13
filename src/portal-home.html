@@ -170,7 +170,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class PortalHome extends Polymer.Element {
+    class PortalHome extends window.Polymer.Element {
       static get is() { return 'portal-home'; }
 
       static get properties() {
@@ -181,7 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
 
-      _computeIsSmallScreen(smallScreen) {
+      static _computeIsSmallScreen(smallScreen) {
         return !smallScreen;
       }
 
@@ -220,9 +220,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.rightGrid1.classList.add('oneColumn');
           this.$.rightGrid1.classList.add('oneColumn');
         }
-    //        } else {
-    //          this.$.leftGrid.classList.add('twoColumns');
-    //        }
       }
     }
 
