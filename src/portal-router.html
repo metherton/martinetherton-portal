@@ -128,19 +128,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           page: {
             type: String,
             reflectToAttribute: true,
-            observer: '_pageChanged'
+            observer: '_pageChanged',
           },
           routeData: Object,
           subroute: String,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
-          rootPath: String
+          rootPath: String,
         };
       }
 
       static get observers() {
         return [
-          '_routePageChanged(routeData.page)'
+          '_routePageChanged(routeData.page)',
         ];
       }
 
@@ -159,26 +159,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.page = page || 'home';
 
         // Close a non-persistent drawer when the page & route are changed.
-//        if (!this.$.drawer.persistent) {
-//          this.$.drawer.close();
-//        }
+    //        if (!this.$.drawer.persistent) {
+    //          this.$.drawer.close();
+    //        }
       }
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('portal-router-' + page + '.html');
+        const resolvedPageUrl = this.resolveUrl(`portal-router-${page}.html`);
         Polymer.importHref(
-                resolvedPageUrl,
-                null,
-                this._showPage404.bind(this),
-                true);
+          resolvedPageUrl,
+          null,
+          this._showPage404.bind(this),
+          true,
+    );
       }
 
       _showPage404() {
         this.page = 'view404';
       }
-
-
     }
 
     window.customElements.define(PortalRouter.is, PortalRouter);

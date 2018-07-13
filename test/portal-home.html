@@ -30,32 +30,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </test-fixture>
 
     <script>
-      suite('Home tests', function() {
+      suite('Home tests', () => {
+  let element;
 
-        var element;
+  setup(() => {
+    element = fixture('BasicView');
+  });
 
-        setup(function() {
-          element = fixture('BasicView');
-        });
+  test('paper-card should exist', () => {
+    const card = element.shadowRoot.querySelector('paper-card');
+    assert.equal(card.heading, 'Etherton One Name Study');
+  });
 
-        test('paper-card should exist', function() {
-          var card = element.shadowRoot.querySelector('paper-card');
-          assert.equal(card.heading, 'Etherton One Name Study');
-        });
+  test('handle tap event', (done) => {
+    element.addEventListener('gotoPage', (event) => {
+      expect(event.page).to.be.equal('/ons');
+      done();
+    });
 
-        test('handle tap event', function(done) {
-          element.addEventListener('gotoPage', function(event) {
-            expect(event.page).to.be.equal('/ons');
-            done();
-          });
-
-          flush(function() {
-            element.gotoOns({target: {page: 'ons'}});
-          });
-        });
-
-
-      });
+    flush(() => {
+      element.gotoOns({ target: { page: 'ons' } });
+    });
+  });
+});
     </script>
   </body>
 </html>

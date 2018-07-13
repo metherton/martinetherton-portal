@@ -131,72 +131,73 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
         class PortalRouterHome extends Polymer.Element {
-            static get is() {
-                return 'portal-router-home';
-            }
-            static get properties() {
-                return {
-                    prop1: {
-                        type: String,
-                        value: "bar"
-                    },
-                    editModel: {
-                        type: Object,
-                        notify: true
-                    },
-                    panelToggle: {
-                        type: String,
-                        value: "",
-                        notify: true
-                    },
-                    showSpinner: {
-                        type: Boolean
-                    }
+          static get is() {
+            return 'portal-router-home';
+          }
 
-                }
-            }
+          static get properties() {
+            return {
+              prop1: {
+                type: String,
+                value: 'bar',
+              },
+              editModel: {
+                type: Object,
+                notify: true,
+              },
+              panelToggle: {
+                type: String,
+                value: '',
+                notify: true,
+              },
+              showSpinner: {
+                type: Boolean,
+              },
 
-            ready() {
-                super.ready();
-                this.$.getCities.generateRequest().completes.then(function(resp) {
-//                    this.ajaxResponseCities = resp;
-                });
-            }
+            };
+          }
 
-            json(obj) {
-                return JSON.stringify(obj, null, 2);
-            }
+          ready() {
+            super.ready();
+            this.$.getCities.generateRequest().completes.then((resp) => {
+      //                    this.ajaxResponseCities = resp;
+        });
+          }
 
-            openPanel(e) {
-                var self = this;
-                this.$.addRoute.opened = true;
-                self.panelToggle = "toggled";
-                self.editModel = {start: "", destination: ""}
-            }
+          json(obj) {
+            return JSON.stringify(obj, null, 2);
+          }
 
-            closePanel() {
-                this.panelToggle = "";
-            }
+          openPanel(e) {
+            const self = this;
+            this.$.addRoute.opened = true;
+            self.panelToggle = 'toggled';
+            self.editModel = { start: '', destination: '' };
+          }
 
-            getWaypoints() {
-                var self = this;
-                self.$.getWaypoints.url = "http://www.martinetherton.com:8080/routeAdvices/" + this.$.addRoute.querySelector('#start').selected + "/" + this.$.addRoute.querySelector('#end').selected;
-                self.$.getWaypoints.generateRequest().completes.then(function(resp){
-                    self.showSpinner = false;
-                    self.$.toast.open();
-                }, function(e) {
-                    self.showSpinner = false;
-                    self.waypoints = self.ajaxResponseWaypoints.waypoints;
-                });
-                self.showSpinner = true;
-            }
+          closePanel() {
+            this.panelToggle = '';
+          }
 
-            convertWaypoints(waypoints) {
-                return waypoints.map(function(w) {
-                    var val = w.split("_");
-                    return {longitude: val[0], latitude: val[1]};
-                });
-            }
+          getWaypoints() {
+            const self = this;
+            self.$.getWaypoints.url = `http://www.martinetherton.com:8080/routeAdvices/${this.$.addRoute.querySelector('#start').selected}/${this.$.addRoute.querySelector('#end').selected}`;
+            self.$.getWaypoints.generateRequest().completes.then((resp) => {
+              self.showSpinner = false;
+              self.$.toast.open();
+        }, (e) => {
+              self.showSpinner = false;
+              self.waypoints = self.ajaxResponseWaypoints.waypoints;
+        });
+            self.showSpinner = true;
+          }
+
+          convertWaypoints(waypoints) {
+            return waypoints.map((w) => {
+              const val = w.split('_');
+              return { longitude: val[0], latitude: val[1] };
+        });
+          }
         }
 
         window.customElements.define(PortalRouterHome.is, PortalRouterHome);

@@ -48,25 +48,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
         class PortalOnsRecordsAbout extends Polymer.Element {
-            static get is() {
-                return 'portal-ons-records-about';
-            }
-            static get properties() {
-                return {
-                    family: {
-                        type: String,
-                        reflectToAttribute: true
-                    }
-                };
-            }
+          static get is() {
+            return 'portal-ons-records-about';
+          }
 
-            gotoBirths() {
-                let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
-                event.page = '/ons/records/births';
-                event.family = this.family;
-                this.dispatchEvent(event);
-            }
+          static get properties() {
+            return {
+              family: {
+                type: String,
+                reflectToAttribute: true,
+              },
+            };
+          }
 
+          gotoBirths() {
+            const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
+            event.page = '/ons/records/births';
+            event.family = this.family;
+            this.dispatchEvent(event);
+          }
         }
 
         window.customElements.define(PortalOnsRecordsAbout.is, PortalOnsRecordsAbout);

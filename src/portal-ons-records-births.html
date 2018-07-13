@@ -192,108 +192,109 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
         class PortalOnsRecordsBirths extends Polymer.Element {
-            static get is() {
-                return 'portal-ons-records-births';
-            }
+          static get is() {
+            return 'portal-ons-records-births';
+          }
 
-            static get properties() {
-                return {
-                    _isSmallScreen: {
-                        computed: '_computeIsSmallScreen(smallScreen)'
-                    },
-                    prop1: {
-                        type: String,
-                        value: "bar"
-                    },
-                    editModel: {
-                        type: Object,
-                        notify: true
-                    },
-                    panelToggle: {
-                        type: String,
-                        value: "",
-                        notify: true
-                    },
-                    family: String
+          static get properties() {
+            return {
+              _isSmallScreen: {
+                computed: '_computeIsSmallScreen(smallScreen)',
+              },
+              prop1: {
+                type: String,
+                value: 'bar',
+              },
+              editModel: {
+                type: Object,
+                notify: true,
+              },
+              panelToggle: {
+                type: String,
+                value: '',
+                notify: true,
+              },
+              family: String,
 
-                }
-            }
+            };
+          }
 
-            ready() {
-                super.ready();
-                if (this.smallScreen) {
-                    this.$.birthGrid.classList.add('oneColumn');
-                } else {
-                    this.$.birthGrid.classList.add('threeColumns');
-                }
+          ready() {
+            super.ready();
+            if (this.smallScreen) {
+              this.$.birthGrid.classList.add('oneColumn');
+            } else {
+              this.$.birthGrid.classList.add('threeColumns');
             }
+          }
 
-            _getParams(family) {
-                return {branch:family};
-            }
+          _getParams(family) {
+            return { branch: family };
+          }
 
-            _computeIsSmallScreen(smallScreen) {
-                return !smallScreen;
-            }
+          _computeIsSmallScreen(smallScreen) {
+            return !smallScreen;
+          }
 
-            json(obj) {
-                return JSON.stringify(obj, null, 2);
-            }
+          json(obj) {
+            return JSON.stringify(obj, null, 2);
+          }
 
-            _sort(a, b) {
-                return a.dateOfBirth < b.dateOfBirth ? -1 : 1;
-            }
+          _sort(a, b) {
+            return a.dateOfBirth < b.dateOfBirth ? -1 : 1;
+          }
 
-            isAll(family) {
-                return family === 'all';
-            }
+          isAll(family) {
+            return family === 'all';
+          }
 
-            openPanel(e) {
-                var self = this;
-                this.$.addPerson.opened = true;
-                self.panelToggle = "toggled";
-                self.editModel = {firstName: "", surname: "", dateOfBirth:"", placeOfBirth:"", gender: "male", branch: "london1"}
-            }
+          openPanel(e) {
+            const self = this;
+            this.$.addPerson.opened = true;
+            self.panelToggle = 'toggled';
+            self.editModel = {
+      firstName: '', surname: '', dateOfBirth: '', placeOfBirth: '', gender: 'male', branch: 'london1',
+    };
+          }
 
-            closePanel() {
-                this.panelToggle = "";
-            }
+          closePanel() {
+            this.panelToggle = '';
+          }
 
-            selectGender(event) {
-                var self = this;
-                if (event.target.checked) {
-                    self.editModel.gender = "male";
-                } else {
-                    self.editModel.gender = "female";
-                }
+          selectGender(event) {
+            const self = this;
+            if (event.target.checked) {
+              self.editModel.gender = 'male';
+            } else {
+              self.editModel.gender = 'female';
             }
+          }
 
-            _getClass(gender) {
-                return gender === "male" ? "blue" : "red";
-            }
+          _getClass(gender) {
+            return gender === 'male' ? 'blue' : 'red';
+          }
 
-            savePerson() {
-                var self = this;
-                self.$.savePerson.body = JSON.stringify(self.editModel);
-                self.$.savePerson.contentType = "application/json";
-                self.$.savePerson.generateRequest();
-            }
+          savePerson() {
+            const self = this;
+            self.$.savePerson.body = JSON.stringify(self.editModel);
+            self.$.savePerson.contentType = 'application/json';
+            self.$.savePerson.generateRequest();
+          }
 
-            savePersonCallback() {
-                var self = this;
-                self.$.toast.text = "Birth saved";
-                self.$.toast.show();
-                self.closePanel();
-                self.$.getPersons.generateRequest();
-            }
+          savePersonCallback() {
+            const self = this;
+            self.$.toast.text = 'Birth saved';
+            self.$.toast.show();
+            self.closePanel();
+            self.$.getPersons.generateRequest();
+          }
 
-            productClass(index) {
-                let color = index % 2 == 0 ? 'white' : 'lightgray';
-                return 'item ' + color;
-            }
+          productClass(index) {
+            const color = index % 2 == 0 ? 'white' : 'lightgray';
+            return `item ${color}`;
+          }
         }
 
         window.customElements.define(PortalOnsRecordsBirths.is, PortalOnsRecordsBirths);
-
     </script>
 </dom-module>

@@ -165,20 +165,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           page: {
             type: String,
             reflectToAttribute: true,
-            observer: '_pageChanged'
+            observer: '_pageChanged',
           },
           routeData: Object,
           subroute: String,
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
-          family: String
+          family: String,
         };
       }
 
       static get observers() {
         return [
-          '_routePageChanged(routeData.page)'
+          '_routePageChanged(routeData.page)',
         ];
       }
 
@@ -197,19 +197,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.page = page || 'home';
 
         // Close a non-persistent drawer when the page & route are changed.
-//        if (!this.$.drawer.persistent) {
-//          this.$.drawer.close();
-//        }
+    //        if (!this.$.drawer.persistent) {
+    //          this.$.drawer.close();
+    //        }
       }
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('portal-ons-' + page + '.html');
+        const resolvedPageUrl = this.resolveUrl(`portal-ons-${page}.html`);
         Polymer.importHref(
-                resolvedPageUrl,
-                null,
-                this._showPage404.bind(this),
-                true);
+          resolvedPageUrl,
+          null,
+          this._showPage404.bind(this),
+          true,
+    );
       }
 
       _showPage404() {
@@ -227,7 +228,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       isAll(family) {
         return family === 'all';
       }
-
     }
 
     window.customElements.define(PortalOns.is, PortalOns);

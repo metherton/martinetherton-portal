@@ -127,76 +127,76 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
         class PortalOnsRecords extends Polymer.Element {
-            static get is() {
-                return 'portal-ons-records';
-            }
-            gotoBirths() {
-                let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
-                event.page = '/ons/records/births';
-                this.dispatchEvent(event);
-            }
+          static get is() {
+            return 'portal-ons-records';
+          }
 
-            static get properties() {
-                return {
-                    page: {
-                        type: String,
-                        reflectToAttribute: true,
-                        observer: '_pageChanged'
-                    },
-                    routeData: Object,
-                    subroute: String,
-                    // This shouldn't be neccessary, but the Analyzer isn't picking up
-                    // Polymer.Element#rootPath
-                    rootPath: String,
-                    family: {
-                        type: String,
-                        reflectToAttribute: true
-                    }
-                };
-            }
+          gotoBirths() {
+            const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
+            event.page = '/ons/records/births';
+            this.dispatchEvent(event);
+          }
 
-            static get observers() {
-                return [
-                    '_routePageChanged(routeData.page)'
-                ];
-            }
+          static get properties() {
+            return {
+              page: {
+                type: String,
+                reflectToAttribute: true,
+                observer: '_pageChanged',
+              },
+              routeData: Object,
+              subroute: String,
+              // This shouldn't be neccessary, but the Analyzer isn't picking up
+              // Polymer.Element#rootPath
+              rootPath: String,
+              family: {
+                type: String,
+                reflectToAttribute: true,
+              },
+            };
+          }
 
-            ready() {
-                super.ready();
-                this.addEventListener('gotoPage', e => this._gotoPage(e));
-            }
+          static get observers() {
+            return [
+              '_routePageChanged(routeData.page)',
+            ];
+          }
 
-            _gotoPage(event) {
-                this.set('route.path', event.page);
-                this.family = event.family;
-            }
+          ready() {
+            super.ready();
+            this.addEventListener('gotoPage', e => this._gotoPage(e));
+          }
 
-            _routePageChanged(page) {
-                // If no page was found in the route data, page will be an empty string.
-                // Default to 'view1' in that case.
-                this.page = page || 'about';
+          _gotoPage(event) {
+            this.set('route.path', event.page);
+            this.family = event.family;
+          }
 
-                // Close a non-persistent drawer when the page & route are changed.
-//        if (!this.$.drawer.persistent) {
-//          this.$.drawer.close();
-//        }
-            }
+          _routePageChanged(page) {
+            // If no page was found in the route data, page will be an empty string.
+            // Default to 'view1' in that case.
+            this.page = page || 'about';
 
-            _pageChanged(page) {
-                // Load page import on demand. Show 404 page if fails
-                var resolvedPageUrl = this.resolveUrl('portal-ons-records-' + page + '.html');
-                Polymer.importHref(
-                        resolvedPageUrl,
-                        null,
-                        this._showPage404.bind(this),
-                        true);
-            }
+            // Close a non-persistent drawer when the page & route are changed.
+    //        if (!this.$.drawer.persistent) {
+    //          this.$.drawer.close();
+    //        }
+          }
 
-            _showPage404() {
-                this.page = 'view404';
-            }
+          _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            const resolvedPageUrl = this.resolveUrl(`portal-ons-records-${page}.html`);
+            Polymer.importHref(
+              resolvedPageUrl,
+              null,
+              this._showPage404.bind(this),
+              true,
+    );
+          }
 
-
+          _showPage404() {
+            this.page = 'view404';
+          }
         }
 
         window.customElements.define(PortalOnsRecords.is, PortalOnsRecords);

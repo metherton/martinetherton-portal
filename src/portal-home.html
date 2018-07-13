@@ -172,12 +172,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     class PortalHome extends Polymer.Element {
       static get is() { return 'portal-home'; }
+
       static get properties() {
         return {
           _isSmallScreen: {
-            computed: '_computeIsSmallScreen(smallScreen)'
-          }
-        }
+            computed: '_computeIsSmallScreen(smallScreen)',
+          },
+        };
       }
 
       _computeIsSmallScreen(smallScreen) {
@@ -185,27 +186,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       gotoOns() {
-        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
         event.page = '/ons';
         event.family = 'all';
         this.dispatchEvent(event);
       }
 
       gotoBirths() {
-        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
         event.page = '/ons/records/births';
         this.dispatchEvent(event);
       }
 
       gotoLondon1() {
-        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
         event.page = '/ons';
         event.family = 'london1';
         this.dispatchEvent(event);
       }
 
       gotoSussex1() {
-        let event = new CustomEvent('gotoPage', {bubbles: true, composed: true});
+        const event = new CustomEvent('gotoPage', { bubbles: true, composed: true });
         event.page = '/ons';
         event.family = 'sussex1';
         this.dispatchEvent(event);
@@ -219,11 +220,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.$.rightGrid1.classList.add('oneColumn');
           this.$.rightGrid1.classList.add('oneColumn');
         }
-//        } else {
-//          this.$.leftGrid.classList.add('twoColumns');
-//        }
+    //        } else {
+    //          this.$.leftGrid.classList.add('twoColumns');
+    //        }
       }
-
     }
 
     window.customElements.define(PortalHome.is, PortalHome);
