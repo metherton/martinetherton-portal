@@ -31,28 +31,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
       suite('Home tests', () => {
-  let element;
+        let element;
 
-  setup(() => {
-    element = fixture('BasicView');
-  });
+        setup(() => {
+          element = fixture('BasicView');
+        });
 
-  test('paper-card should exist', () => {
-    const card = element.shadowRoot.querySelector('paper-card');
-    assert.equal(card.heading, 'Etherton One Name Study');
-  });
+        test('paper-card should exist', () => {
+          element.smallScreen = true;
 
-  test('handle tap event', (done) => {
-    element.addEventListener('gotoPage', (event) => {
-      expect(event.page).to.be.equal('/ons');
-      done();
-    });
+          setTimeout((done) => {
+            const card = element.shadowRoot.querySelector('#pcons');
+            assert.equal(card.heading, 'Etherton One Name Study');
+            done();
+          }, 500);
+        });
 
-    flush(() => {
-      element.gotoOns({ target: { page: 'ons' } });
-    });
-  });
-});
+        test('handle tap event', (done) => {
+          element.addEventListener('gotoPage', (event) => {
+            expect(event.page).to.be.equal('/ons');
+            done();
+          });
+
+          flush(() => {
+            element.gotoOns({ target: { page: 'ons' } });
+          });
+        });
+      });
     </script>
   </body>
 </html>

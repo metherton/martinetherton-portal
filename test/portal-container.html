@@ -31,20 +31,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <script>
       suite('portal-container tests', () => {
-  test('Title should be MartinEtherton Portal', () => {
-    const myContainer = fixture('BasicContainer');
-    const mainTitle = myContainer.shadowRoot.querySelector('span');
-    assert.equal(mainTitle.innerHTML, 'MeP');
-  });
+        test('Title should be MartinEtherton Portal', () => {
+          const myContainer = fixture('BasicContainer');
+          const mainTitle = myContainer.shadowRoot.querySelector('span');
+          assert.equal(mainTitle.innerHTML, 'MeP');
+        });
 
-  test('should be link to router application', () => {
-    const myContainer = fixture('BasicContainer');
-    const paperTabs = myContainer.shadowRoot.querySelectorAll('paper-tab a');
-    assert(paperTabs, 'paper tabs is neither null or undefined');
-    assert.equal(paperTabs.length, 4);
-    assert.equal(paperTabs[2].innerHTML, 'Router');
-  });
-});
+        test('should be link to router application', () => {
+          const myContainer = fixture('BasicContainer');
+          const paperTabs = myContainer.shadowRoot.querySelectorAll('paper-tab a');
+          assert(paperTabs, 'paper tabs is neither null or undefined');
+          assert.equal(paperTabs.length, 4);
+          assert.equal(paperTabs[2].innerHTML, 'Router');
+        });
+      });
     </script>
   </body>
 </html>

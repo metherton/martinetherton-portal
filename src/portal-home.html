@@ -1,13 +1,3 @@
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
@@ -17,12 +7,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="portal-home">
   <template>
     <style include="shared-styles">
+
       :host {
         display: block;
-        /*display: flex;*/
-
-        /*padding: 10px;*/
       }
+
       p.home-title {
         margin-left: 24px;
         font-size: 1.25rem;
@@ -53,7 +42,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       paper-card.right {
-        /*margin-left: 24px;*/
         --paper-card-header-color: white;
         --paper-card-header-text: {
           font-size: 24px;
@@ -64,48 +52,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         cursor: pointer;
       }
 
-
     </style>
     <style include="app-grid-style">
-      /*:host {*/
-        /*--app-grid-columns: 2;*/
-        /*--app-grid-gutter: 5px;*/
-        /*!*--app-grid-item-height: 100px;*!*/
-        /*!*--app-grid-expandible-item-columns: 2;*!*/
-      /*}*/
-
-      /*ul.app-grid.twoColumns.full {*/
-        /*--app-grid-item-height: 100px;*/
-      /*}*/
-
       .twoColumns {
         --app-grid-columns: 2;
-        /*--app-grid-gutter: 10px;*/
       }
 
       .oneColumn {
         --app-grid-columns: 1;
-        /*--app-grid-gutter: 5px;*/
       }
-
-      /*.oneColumn li {*/
-        /*--app-grid-item-height: 170px;*/
-        /*background-color: red;*/
-      /*}*/
-
-      /*:host {*/
-        /*--app-grid-item-height: 340px;*/
-      /*}*/
-
-      /*:host .right {*/
-        /*--app-grid-item-height: 170px;*/
-      /*}*/
-
-      /*.item:first-child {*/
-        /*@apply --app-grid-expandible-item;*/
-      /*}*/
-
-
 
       ul {
         padding: 0;
@@ -113,8 +68,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       ul.app-grid li {
-        /*background-color: red;*/
-        /*border-style: solid;*/
       }
 
       .half {
@@ -122,15 +75,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .item {
-        /*background-color: red;*/
-        /*border-style: solid;*/
       }
-
-      /*@media (max-width: 640px) {*/
-        /*:host {*/
-          /*--app-grid-columns: 1;*/
-        /*}*/
-      /*}*/
 
     </style>
 
@@ -142,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-if" if="[[!smallScreen]]">
       <ul class="app-grid twoColumns full">
         <li style="padding-left: 4px">
-          <paper-card class="twoColumns" image="../images/sussex1.jpg"  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
+          <paper-card id="pcons" class="twoColumns" image="../images/sussex1.jpg"  on-tap="gotoOns" heading="Etherton One Name Study"></paper-card>
         </li>
         <li>
           <ul style="margin-top: -5px"  class="app-grid twoColumns half">
@@ -150,8 +95,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <li><paper-card on-tap="gotoSussex1" image="../images/sussex1.jpg"  class="oneColumn" heading="Sussex Ethertons"></paper-card></li>
           </ul>
           <ul style="margin-top: -11px" class="app-grid twoColumns half">
-            <li ><paper-card id="births" on-tap="gotoBirths" image="../images/birth_sid.jpg"  class="oneColumn" heading="Births"></paper-card></li>
-            <li ><paper-card id="marriages" on-tap="gotoMarriages" image="../images/marriage.jpeg"  class="oneColumn" heading="Marriages"></paper-card></li>
+            <li><paper-card id="births" on-tap="gotoBirths" image="../images/birth_sid.jpg"  class="oneColumn" heading="Births"></paper-card></li>
+            <li><paper-card id="marriages" on-tap="gotoMarriages" image="../images/marriage.jpeg"  class="oneColumn" heading="Marriages"></paper-card></li>
           </ul>
         </li>
       </ul>
@@ -159,7 +104,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <template is="dom-if" if="[[smallScreen]]">
       <ul style="padding-left: 4px; padding-right: 4px" class="app-grid oneColumn">
-        <li><paper-card class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
+        <li><paper-card id="pcons" class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoOns" heading="Etherton One Name Study" ></paper-card></li>
         <li><paper-card class="oneColumn" image="../images/hp.png" on-tap="gotoLondon1" heading="London Ethertons"></paper-card></li>
         <li><paper-card  class="oneColumn" image="../images/sussex1.jpg" on-tap="gotoSussex1" heading="Sussex Ethertons" ></paper-card></li>
         <li><paper-card id="births" class="oneColumn" image="../images/birth_sid.jpg" on-tap="gotoBirths" heading="Births"></paper-card></li>
@@ -178,6 +123,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           _isSmallScreen: {
             computed: '_computeIsSmallScreen(smallScreen)',
           },
+          smallScreen: {
+            type: Boolean,
+            value: false
+          }
         };
       }
 
@@ -212,14 +161,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.dispatchEvent(event);
       }
 
-
       ready() {
         super.ready();
-        if (this.smallScreen) {
-          this.$.leftGrid.classList.add('oneColumn');
-          this.$.rightGrid1.classList.add('oneColumn');
-          this.$.rightGrid1.classList.add('oneColumn');
-        }
       }
     }
 
