@@ -1,10 +1,15 @@
 [
   {"name": "Alexandria", "latitude": "31.5", "longitude": "30.0"},
+  {"name": "Barcelona", "latitude": "41.0", "longitude": "2.0"},
+  {"name": "Cape Town", "latitude": "-40.0", "longitude": "18.0"},
   {"name": "Hong Kong", "latitude": "22.0", "longitude": "114.5"},
   {"name": "Long Island", "latitude": "40.0", "longitude": "-72.0"},
   {"name": "New York", "latitude": "40.0", "longitude": "-73.5"},
+  {"name": "Panama", "latitude": "7.5", "longitude": "-80.5"},
   {"name": "Plymouth", "latitude": "50.0", "longitude": "-4.0"},
   {"name": "Rio de Janeiro", "latitude": "-23.5", "longitude": "-43.0"},
+  {"name": "San Francisco", "latitude": "38.0", "longitude": "-122.5"},
+  {"name": "Santiago", "latitude": "-33.5", "longitude": "-71.0"},
   {"name": "Sydney", "latitude": "-34.0", "longitude": "151.5"},
   {"name": "Tokyo", "latitude": "35.0", "longitude": "139.5"}
 ]
