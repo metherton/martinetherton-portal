@@ -13,61 +13,70 @@
     <link rel="import" href="../src/portal-ons-records-births.html">
 </head>
 <body>
-<test-fixture id="BasicView">
-    <template>
-        <portal-ons-records-births>
+  <test-fixture id="BasicView">
+      <template>
+          <portal-ons-records-births>
 
-        </portal-ons-records-births>
-    </template>
-</test-fixture>
+          </portal-ons-records-births>
+      </template>
+  </test-fixture>
 
-<script>
+  <script>
     suite('<portal-ons-records-births>', () => {
-    let onsRecords;
-    let api;
-    let request;
-    let server;
-    const responseHeaders = {
+      let onsRecords;
+      let api;
+      let request;
+      let server;
+
+      const responseHeaders = {
         json: { 'Content-Type': 'application/json' },
-    };
-    setup(() => {
-    server = sinon.fakeServer.create();
-    server.respondWith(
-          'GET',
-          /\/*users*/, [
-            200,
-            responseHeaders.json,
-            '{"success":true}',
-          ],
-    );
-  });
-    teardown(() => {
-    server.restore();
-  });
-    suite('when making simple GET requests for JSON', () => {
-    setup(() => {
-    // get fresh instance of iron-ajax before every test
-    onsRecords = fixture('BasicView');
-    api = onsRecords.$.getPersons;
+      };
+
+      setup(() => {
+        server = sinon.fakeServer.create();
+        server.respondWith(
+                'GET',
+                /\/*users*/, [
+                  200,
+                  responseHeaders.json,
+                  '{"success":true}',
+                ],);
+      });
+
+      teardown(() => {
+        server.restore();
+      });
+
+      suite('when making simple GET requests for JSON', () => {
+        setup(() => {
+          // get fresh instance of iron-ajax before every test
+          onsRecords = fixture('BasicView');
+        });
+        test('returns object with property success set to true', () => {
+          setTimeout((done) => {
+            api = onsRecords.$.getPersons;
+            request = api.generateRequest();
+            server.respond();
+            expect(request.response).to.be.ok;
+            expect(request.response).to.be.an('object');
+            expect(request.response.success).to.be.equal(true);
+            done();
+          }, 500);
+        });
+        test('has the correct xhr method', () => {
+          setTimeout((done) => {
+            api = onsRecords.$.getPersons;
+            expect(request.xhr.method).to.be.equal('GET');
+            done();
+           }, 500);
+        });
+        test('add person dialog opened when add button pressed', () => {
+          const birthsView = fixture('BasicView');
+          birthsView.shadowRoot.querySelector('paper-icon-button').click();
+          expect(birthsView.shadowRoot.querySelector('#addPerson').opened).to.be.equal(true);
+        });
+      });
     });
-    test('returns object with property success set to true', () => {
-    request = api.generateRequest();
-    server.respond();
-    expect(request.response).to.be.ok;
-    expect(request.response).to.be.an('object');
-    expect(request.response.success).to.be.equal(true);
-    });
-    test('has the correct xhr method', () => {
-    request = api.generateRequest();
-    expect(request.xhr.method).to.be.equal('GET');
-    });
-    test('add person dialog opened when add button pressed', () => {
-    const birthsView = fixture('BasicView');
-    birthsView.shadowRoot.querySelector('paper-icon-button').click();
-    expect(birthsView.shadowRoot.querySelector('#addPerson').opened).to.be.equal(true);
-    });
-  });
-});
-</script>
+  </script>
 </body>
 </html>

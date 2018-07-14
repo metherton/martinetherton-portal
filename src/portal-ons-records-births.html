@@ -58,15 +58,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             .item {
                 /*background-color: white;*/
             }
-            /* Only the first item should expand */
+
             .item:first-child {
                 @apply --app-grid-expandible-item;
             }
-            /*@media (max-width: 640px) {*/
-                /*:host {*/
-                    /*--app-grid-columns: 1;*/
-                /*}*/
-            /*}*/
 
             paper-card {
                 --paper-card-content: {
@@ -138,22 +133,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     <div class="card-content">Born:&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</div>
                 </paper-card>
             </template>
-            <!--<template is="dom-repeat" items="[[ajaxResponse]]">-->
-                <!--<paper-card heading="[[item.email]]">-->
-                    <!--<div class="card-content">Born:&nbsp;[[item.email]]</div>-->
-                <!--</paper-card>-->
-            <!--</template>-->
         </ul>
 
         <paper-toast id="toast"></paper-toast>
 
-
-        <!--<iron-ajax auto id="getWaypoints"-->
-                   <!--url="http://www.martinetherton.com:8080/routeAdvices/114.5_22.0/-72.0_40.0"-->
-                   <!--handle-as="json"-->
-                   <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
-
-        <!--</iron-ajax>-->
 
         <template is="dom-if" if="{{!isAll(family)}}">
             <iron-ajax auto id="getPersons"

@@ -20,11 +20,15 @@
 
     <script>
       suite('ONS tests', () => {
-  test('Page heading should be correct', () => {
-    const onsView = fixture('BasicView');
-    const title = onsView.shadowRoot.querySelector('span');
-    assert.equal(title.textContent, 'One Name Study');
-  });
+      test('Page heading should be correct', () => {
+        const onsView = fixture('BasicView');
+        setTimeout((done) => {
+          const title = onsView.shadowRoot.querySelector('span');
+          assert.equal(title.textContent, 'One Name Study');
+          done();
+        }, 500);
+
+      });
 });
     </script>
   </body>
