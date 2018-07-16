@@ -109,6 +109,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <paper-input floatingLabel="true" label="Surname" value="{{editModel.surname}}"></paper-input>
                 <paper-input floatingLabel="true" label="Place of Birth" value="{{editModel.placeOfBirth}}"></paper-input>
                 <paper-input floatingLabel="true" label="Date of Birth" value="{{editModel.dateOfBirth}}"></paper-input>
+
                 <div style="margin-top: 5px; margin-bottom: 20px">
                     <paper-dropdown-menu class="custom" label="Etherton Branch">
                         <paper-listbox id="branch" slot="dropdown-content" class="dropdown-content" attr-for-selected="value" selected="{{editModel.branch}}">
@@ -117,7 +118,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         </paper-listbox>
                     </paper-dropdown-menu>
                 </div>
-                <paper-checkbox on-change="selectGender" checked>Male</paper-checkbox>
+                <div style="margin-top: 5px; margin-bottom: 20px">
+                  <paper-dropdown-menu style="width: 100%" class="custom" label="Father">
+                    <paper-listbox id="father" slot="dropdown-content" class="dropdown-content" attr-for-selected="value" selected="{{editModel.father}}">
+                      <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index" sort="_sort">
+                        <paper-item value="[[item.id]]">[[item.firstName]]&nbsp;[[item.surname]]&nbsp;,&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+                </div>
+                <div style="margin-top: 5px; margin-bottom: 20px">
+                  <paper-dropdown-menu style="width: 100%" class="custom" label="Mother">
+                    <paper-listbox id="mother" slot="dropdown-content" class="dropdown-content" attr-for-selected="value" selected="{{editModel.mother}}">
+                      <template is="dom-repeat" items="[[ajaxResponse]]" indexAs="index" sort="_sort">
+                        <paper-item value="[[item.id]]">[[item.firstName]]&nbsp;[[item.surname]]&nbsp;,&nbsp;[[item.placeOfBirth]]&nbsp;,&nbsp;[[item.dateOfBirth]]</paper-item>
+                      </template>
+                    </paper-listbox>
+                  </paper-dropdown-menu>
+              </div>
+              <paper-checkbox on-change="selectGender" checked>Male</paper-checkbox>
             </div>
             <div class="buttons">
                 <paper-button dialog-confirm tabindex="0" raised colored on-click="savePerson">Save</paper-button>
@@ -154,15 +173,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             </iron-ajax>
         </template>
-
-        <!--<iron-ajax auto id="getPersons"-->
-                   <!--url="http://localhost:8080/users"-->
-                   <!--handle-as="json"-->
-                   <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
-
-        <!--</iron-ajax>-->
-
-
 
         <iron-ajax id="savePerson"
                    url="http://www.martinetherton.com:80/users"
