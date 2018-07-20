@@ -157,22 +157,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-toast id="toast"></paper-toast>
 
 
-        <template is="dom-if" if="{{!isAll(family)}}">
-            <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:80/users"
-                       handle-as="json"
-                       last-response="{{ajaxResponse}}" debounce-duration="300" params='{{_getParams(family)}}'>
+        <!--<template is="dom-if" if="{{!isAll(family)}}">-->
+        <iron-ajax auto id="getPersons"
+                   url="http://www.martinetherton.com:80/users"
+                   handle-as="json"
+                   last-response="{{ajaxResponse}}" debounce-duration="300" params='{{_getParams(family)}}'>
 
-            </iron-ajax>
-        </template>
-        <template is="dom-if" if="{{isAll(family)}}">
-            <iron-ajax auto id="getPersons"
-                       url="http://www.martinetherton.com:80/users"
-                       handle-as="json"
-                       last-response="{{ajaxResponse}}" debounce-duration="300">
+        </iron-ajax>
+        <!--</template>-->
+        <!--<template is="dom-if" if="{{isAll(family)}}">-->
+            <!--<iron-ajax auto id="getPersons"-->
+                       <!--url="http://www.martinetherton.com:80/users"-->
+                       <!--handle-as="json"-->
+                       <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
 
-            </iron-ajax>
-        </template>
+            <!--</iron-ajax>-->
+        <!--</template>-->
+
+        <!--<iron-ajax auto id="getPersons"-->
+                   <!--url="http://www.martinetherton.com:80/users"-->
+                   <!--handle-as="json"-->
+                   <!--last-response="{{ajaxResponse}}" debounce-duration="300">-->
+
+        <!--</iron-ajax>-->
 
         <iron-ajax id="savePerson"
                    url="http://www.martinetherton.com:80/users"
@@ -280,6 +287,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             self.$.toast.show();
             self.closePanel();
             self.$.getPersons.generateRequest();
+            //.completes.then((response) => );
+            //self.notifyPath('ajaxResponse');
           }
 
           productClass(index) {
