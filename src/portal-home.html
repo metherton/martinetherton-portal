@@ -62,6 +62,10 @@
         --app-grid-columns: 1;
       }
 
+      .threeColumn {
+        --app-grid-columns: 3;
+      }
+
       ul {
         padding: 0;
         list-style: none;
@@ -75,6 +79,34 @@
       }
 
       .item {
+      }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      table, td {
+        border: 1px solid grey;
+      }
+
+      td {
+        text-align: center;
+      }
+
+      div.app-grid.twoColumns {
+        background-color: red;
+        border: 1px solid grey;
+        /*border-collapse: collapse;*/
+      }
+
+      .cell {
+        border: 1px solid grey;
+      }
+
+      paper-button {
+        font-size: 36px;
+        min-width: 1em;
+        width: 100%;
       }
 
     </style>
@@ -99,7 +131,23 @@
             <li><paper-card id="marriages" on-tap="gotoMarriages" image="../images/marriage.jpeg"  class="oneColumn" heading="Marriages"></paper-card></li>
           </ul>
         </li>
+        <li>
+
+            <table style="width:50%">
+              <tr><td><paper-button>1</paper-button></td><td><paper-button>2</paper-button></td><td><paper-button>3</paper-button></td></tr>
+              <tr><td><paper-button>4</paper-button></td><td><paper-button>5</paper-button></td><td><paper-button>6</paper-button></td></tr>
+            </table>
+
+          <!--<div class="app-grid twoColumns">-->
+            <!--<div class="cell">1</div><div class="cell">2</div><div class="cell">3</div><div class="cell">4</div>-->
+          <!--</div>-->
+
+
+        </li>
       </ul>
+
+
+
     </template>
 
     <template is="dom-if" if="[[smallScreen]]">
